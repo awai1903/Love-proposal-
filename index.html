@@ -15,7 +15,8 @@
       color: #c2185b;
       text-align: center;
       padding: 50px;
-      overflow: hidden;
+      overflow-y: auto;
+      min-height: 100vh;
     }
     h1, p {
       margin-bottom: 20px;
@@ -47,6 +48,7 @@
       margin: auto;
       font-size: 1.4em;
       animation: popin 1s ease-out forwards;
+      white-space: pre-wrap;
     }
     @keyframes popin {
       from { transform: scale(0); opacity: 0; }
@@ -113,21 +115,66 @@
     };
 
     let noClickCount = 0;
+    const messages = [
+      "Phir se soch lo...",
+      "Main intezaar karunga...",
+      "Dil se kaha tha, dimag se nahi...",
+      "Mazaak mat samjho...",
+      "Itna asaan nahi hai bhool jaana...",
+      "Bas ek baar haan keh do...",
+      "Tum samjhogi ek din...",
+      "Sabar ka phal pyaara hota hai...",
+      "Tum hi meri duniya ho...",
+      "Theek hai... sirf haan ka intezaar rahega 💔",
+      "Aankhon ne sab keh diya tha...",
+      "Mann ki baat thi, lafzon mein nahi aayi...",
+      "Tumhari khamoshi bhi kuch kehti hai...",
+      "Dil todna aasaan hai, jodna mushkil...",
+      "Kya tum bhi kabhi meri yaadon mein kho jaati ho?",
+      "Main toh har waqt tumhara sochta hoon...",
+      "Har raaz tumse share karne ka mann karta hai...",
+      "Tumhari hansi meri jaan hai...",
+      "Mujhe bas tumhara saath chahiye...",
+      "Ek baar pyaar ka izhaar toh karo...",
+      "Tumse door rehna mushkil hai...",
+      "Tumhe khush dekhna meri khushi hai...",
+      "Tere bina sab suna suna sa lagta hai...",
+      "Har dua mein tumhara naam hota hai...",
+      "Main tumse door jaane ka soch bhi nahi sakta...",
+      "Tum meri kamzori bhi ho aur taqat bhi...",
+      "Mujhe tumhari zaroorat hai...",
+      "Tera intezaar har roz hota hai...",
+      "Mujhe yakeen hai, ek din tum samjhogi...",
+      "Pyaar sirf kehne se nahi, nibhaane se hota hai...",
+      "Agar tum na ho to sab kuch bekaar hai...",
+      "Mujhe na kehkar khud ka dil dukhate ho...",
+      "Jab tak tum nahi haan kehdo, main rukunga nahi...",
+      "Tum meri har khushi ho...",
+      "Mera pyaar tumse sacha hai...",
+      "Kya tum itni bhi naraz ho mujhse?",
+      "Tum meri zindagi ka hissa ho...",
+      "Tere bina sab adhoora hai...",
+      "Main tumse milne ka intezaar kar raha hoon...",
+      "Main tumhara hoon, sirf tumhara...",
+      "Mujhe tumhare bina kuch bhi nahi chahiye...",
+      "Mera dil sirf tumhare liye dhadakta hai...",
+      "Tumhari awaaz mere liye music hai...",
+      "Main sapne mein bhi tumhe dekhta hoon...",
+      "Tum mujhe chhod kar mat jaana...",
+      "Pyaar tumse kiya hai, aakhri saans tak nibhaunga...",
+      "Tum ho to sab kuch hai...",
+      "Tumhari aankhen meri duniya hai...",
+      "Kya tum mere pyaar ko samjhogi kabhi?",
+      "Tum bina zindagi ka matlab hi nahi...",
+      "Main tumse kabhi juda nahi hona chahta..."
+    ];
+
     noBtn.onclick = () => {
-      noClickCount++;
-      const messages = [
-        "Phir se soch lo...",
-        "Main intezaar karunga...",
-        "Dil se kaha tha, dimag se nahi...",
-        "Mazaak mat samjho...",
-        "Itna asaan nahi hai bhool jaana...",
-        "Bas ek baar haan keh do...",
-        "Tum samjhogi ek din...",
-        "Sabar ka phal pyaara hota hai...",
-        "Tum hi meri duniya ho...",
-        "Theek hai... sirf haan ka intezaar rahega 💔"
-      ];
-      letterContent.innerText += `\n\n${messages[noClickCount % messages.length]}`;
+      if (noClickCount < messages.length) {
+        letterContent.innerText += `\n\n${messages[noClickCount]}`;
+        letter.scrollIntoView({ behavior: 'smooth', block: 'end' });
+        noClickCount++;
+      }
     };
   </script></body>
 </html>
