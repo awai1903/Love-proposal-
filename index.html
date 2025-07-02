@@ -1,141 +1,133 @@
 <!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>I Love You</title>
-  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
+  <title>My Feelings for You</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
   <style>
-    body {
+    * {
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom right, #ffcccc, #ffe6f0);
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'Pacifico', cursive;
-      text-align: center;
-      overflow: hidden;
-      position: relative;
-    }
-    h1, #question {
-      font-size: 2.4em;
-      color: #d10068;
-      margin-top: 30px;
-    }
-    #subQuestion {
-      font-size: 1.6em;
+      background: linear-gradient(to bottom right, #ffe6f0, #ffd6e8);
       color: #c2185b;
+      text-align: center;
+      padding: 50px;
+      overflow: hidden;
     }
-    button {
-      padding: 15px 35px;
-      font-size: 1.5em;
-      margin: 20px;
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
-      transition: 0.3s ease-in-out;
-      z-index: 1;
-      position: relative;
+    h1, p {
+      margin-bottom: 20px;
     }
-    #yesBtn {
-      background-color: #ff4081;
-      color: white;
+    .typing {
+      font-size: 2em;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: .15em solid #c2185b;
+      animation: typing 4s steps(40, end), blink .75s step-end infinite;
+      width: 0;
+      margin: 0 auto 40px;
     }
-    #noBtn {
-      background-color: #f8bbd0;
-      color: #880e4f;
-      position: absolute;
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
+    }
+    @keyframes blink {
+      from, to { border-color: transparent }
+      50% { border-color: #c2185b; }
     }
     .letter {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) scale(0);
-      background-color: #fff0f5;
+      display: none;
+      background: #fff0f5;
+      border: 2px dashed #ff69b4;
       padding: 30px;
-      border: 2px solid pink;
       border-radius: 15px;
-      font-size: 1.6em;
-      color: #c2185b;
-      z-index: 4;
-      animation: letterShow 1.5s forwards;
-      box-shadow: 0 0 25px rgba(255, 105, 180, 0.6);
+      max-width: 500px;
+      margin: auto;
+      font-size: 1.4em;
+      animation: popin 1s ease-out forwards;
     }
-    @keyframes letterShow {
-      0% {
-        transform: translate(-50%, -50%) scale(0);
-        opacity: 0;
-      }
-      100% {
-        transform: translate(-50%, -50%) scale(1);
-        opacity: 1;
-      }
+    @keyframes popin {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    #buttons {
+      margin-top: 30px;
+    }
+    button {
+      background-color: #ff69b4;
+      color: white;
+      font-size: 1.2em;
+      padding: 10px 25px;
+      margin: 15px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: 0.3s ease;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+    #finalHeart {
+      font-size: 4em;
+      display: none;
+      animation: heartPulse 1s ease-in-out infinite;
+      margin-top: 40px;
+    }
+    @keyframes heartPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
     }
   </style>
 </head>
 <body>
-  <audio autoplay loop>
-    <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
-  </audio>
-  <h1 id="question">Typing...</h1>
-  <p id="subQuestion"></p>
-  <button id="yesBtn" style="display:none">Yes ❤️</button>
-  <button id="noBtn" style="display:none">No ❌</button>  <script>
-    let userName = prompt("What's your name?");
-    const isFemale = userName.toLowerCase().endsWith("a") || userName.toLowerCase().endsWith("i") || userName.toLowerCase().endsWith("e");
+  <div class="typing" id="typingText">Kabhi kabhi kuch baatein dil mein rehti hain...</div>  <div id="letter" class="letter">
+    <p id="letterContent"></p>
+    <div id="buttons">
+      <button id="yes">Yes ❤️</button>
+      <button id="no">No ❌</button>
+    </div>
+  </div>  <div id="finalHeart">❤️</div>  <script>
+    const typingText = document.getElementById("typingText");
+    const letter = document.getElementById("letter");
+    const letterContent = document.getElementById("letterContent");
+    const yesBtn = document.getElementById("yes");
+    const noBtn = document.getElementById("no");
+    const finalHeart = document.getElementById("finalHeart");
 
-    const questionText = `Hey ${userName}, I love you so much ❤️`;
-    const subQuestionText = `Do you love me?`;
-
-    let i = 0;
-    function typeGreeting() {
-      if (i < questionText.length) {
-        document.getElementById("question").innerText = questionText.substring(0, i + 1);
-        i++;
-        setTimeout(typeGreeting, 60);
-      } else {
-        document.getElementById("subQuestion").innerText = subQuestionText;
-        document.getElementById("yesBtn").style.display = 'inline-block';
-        document.getElementById("noBtn").style.display = 'inline-block';
-      }
-    }
-    typeGreeting();
-
-    const yesBtn = document.getElementById('yesBtn');
-    const noBtn = document.getElementById('noBtn');
-    let noClickCount = 0;
-    let currentScale = 1;
+    setTimeout(() => {
+      typingText.style.display = 'none';
+      letter.style.display = 'block';
+      const name = prompt("Tumhara naam kya hai?") || "janeman";
+      const isFemale = name.toLowerCase().endsWith("a") || name.toLowerCase().endsWith("i") || name.toLowerCase().endsWith("e");
+      const line1 = `Hey ${name}, main tumse ek baat kehna chahta${isFemale ? 'i' : 'hoon'}...`;
+      const msg = `Mujhe nahi pata tum mere baare mein kya sochti ho... par main tumse dil se pyaar karta${isFemale ? 'i' : 'hoon'} ❤️\nTumhara naam liya to dil muskurata hai... aur tumhari soch neend uda deti hai...\nAaj sab kuch keh kar halka ho jaana chahta${isFemale ? 'i' : 'hoon'}...\nKya tum bhi mujhse pyaar karti${isFemale ? 'i' : 'ay'} ho?`;
+      letterContent.innerText = `${line1}\n\n${msg}`;
+    }, 4500);
 
     yesBtn.onclick = () => {
-      document.querySelectorAll(".letter").forEach(el => el.remove());
-      const letter = document.createElement("div");
-      letter.className = "letter";
-      letter.innerText = isFemale
-        ? `Acha to tum be meray say pyaar kartii 😘💖`
-        : `Acha to tum be meray say pyaar kartay 😘💖`;
-      document.body.appendChild(letter);
+      letter.style.display = 'none';
+      finalHeart.style.display = 'block';
+      finalHeart.innerText = '❤️❤️❤️ Mujhe pata tha... Tum meri feeling samjhogi 😘';
     };
 
-    function getRandomPosition() {
-      const x = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
-      const y = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
-      return { x, y };
-    }
-
-    noBtn.addEventListener('click', () => {
+    let noClickCount = 0;
+    noBtn.onclick = () => {
       noClickCount++;
-      document.getElementById("subQuestion").innerText = "Dubara soch lo...";
-      currentScale *= 2;
-      noBtn.style.transform = `scale(${currentScale})`;
-
-      if (noClickCount <= 5) {
-        const { x, y } = getRandomPosition();
-        noBtn.style.left = `${x}px`;
-        noBtn.style.top = `${y}px`;
-      }
-
-      if (currentScale >= 30) {
-        noBtn.style.display = 'none';
-        yesBtn.style.display = 'inline-block';
-        document.getElementById("subQuestion").innerText = 'Okay... only one way left to answer...';
-      }
-    });
+      const messages = [
+        "Phir se soch lo...",
+        "Main intezaar karunga...",
+        "Dil se kaha tha, dimag se nahi...",
+        "Mazaak mat samjho...",
+        "Itna asaan nahi hai bhool jaana...",
+        "Bas ek baar haan keh do...",
+        "Tum samjhogi ek din...",
+        "Sabar ka phal pyaara hota hai...",
+        "Tum hi meri duniya ho...",
+        "Theek hai... sirf haan ka intezaar rahega 💔"
+      ];
+      letterContent.innerText += `\n\n${messages[noClickCount % messages.length]}`;
+    };
   </script></body>
 </html>
