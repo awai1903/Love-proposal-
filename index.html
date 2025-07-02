@@ -1,6 +1,4 @@
-
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
   <title>I Love You</title>
@@ -15,13 +13,13 @@
       overflow: hidden;
       position: relative;
     }
-    h1 {
-      font-size: 3em;
+    h1, #question {
+      font-size: 2.4em;
       color: #d10068;
-      margin-top: 60px;
+      margin-top: 30px;
     }
-    p {
-      font-size: 1.8em;
+    #subQuestion {
+      font-size: 1.6em;
       color: #c2185b;
     }
     button {
@@ -76,53 +74,68 @@
   <audio autoplay loop>
     <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg" />
   </audio>
-  <h1 id="greeting">Typing...</h1>
-  <p id="question"></p>
-  <button id="yesBtn">Yes ❤️</button>
-  <button id="noBtn">No ❌</button>
-  <script>
+  <h1 id="question">Typing...</h1>
+  <p id="subQuestion"></p>
+  <button id="yesBtn" style="display:none">Yes ❤️</button>
+  <button id="noBtn" style="display:none">No ❌</button>  <script>
     let userName = prompt("What's your name?");
     const isFemale = userName.toLowerCase().endsWith("a") || userName.toLowerCase().endsWith("i") || userName.toLowerCase().endsWith("e");
-    const greeting = `Hey ${userName}, I really love you ❤️`;
-    const questionText = `Will you be mine forever, ${userName}?`;
+
+    const questionText = `Hey ${userName}, I love you so much ❤️`;
+    const subQuestionText = `Do you love me?`;
+
     let i = 0;
     function typeGreeting() {
-      if (i < greeting.length) {
-        document.getElementById("greeting").innerText = greeting.substring(0, i + 1);
+      if (i < questionText.length) {
+        document.getElementById("question").innerText = questionText.substring(0, i + 1);
         i++;
         setTimeout(typeGreeting, 60);
       } else {
-        document.getElementById("question").innerText = questionText;
+        document.getElementById("subQuestion").innerText = subQuestionText;
+        document.getElementById("yesBtn").style.display = 'inline-block';
+        document.getElementById("noBtn").style.display = 'inline-block';
       }
     }
     typeGreeting();
+
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
+    let noClickCount = 0;
+    let currentScale = 1;
+
     yesBtn.onclick = () => {
       document.querySelectorAll(".letter").forEach(el => el.remove());
       const letter = document.createElement("div");
       letter.className = "letter";
       letter.innerText = isFemale
-        ? `Mujhay pata tha ke tum zaroor dabao gi janeman 😘💖`
-        : `Mujhay pata tha ke tum zaroor dabao gay janeman 😘💖`;
+        ? `Acha to tum be meray say pyaar kartii 😘💖`
+        : `Acha to tum be meray say pyaar kartay 😘💖`;
       document.body.appendChild(letter);
     };
-    let usedPositions = [];
-    const getRandomPosition = () => {
-      let x, y, key;
-      do {
-        x = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
-        y = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
-        key = `${x},${y}`;
-      } while (usedPositions.includes(key) && usedPositions.length < 100);
-      usedPositions.push(key);
+
+    function getRandomPosition() {
+      const x = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
+      const y = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
       return { x, y };
-    };
-    noBtn.addEventListener('mouseover', () => {
-      const { x, y } = getRandomPosition();
-      noBtn.style.left = `${x}px`;
-      noBtn.style.top = `${y}px`;
+    }
+
+    noBtn.addEventListener('click', () => {
+      noClickCount++;
+      document.getElementById("subQuestion").innerText = "Dubara soch lo...";
+      currentScale *= 2;
+      noBtn.style.transform = `scale(${currentScale})`;
+
+      if (noClickCount <= 5) {
+        const { x, y } = getRandomPosition();
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+      }
+
+      if (currentScale >= 30) {
+        noBtn.style.display = 'none';
+        yesBtn.style.display = 'inline-block';
+        document.getElementById("subQuestion").innerText = 'Okay... only one way left to answer...';
+      }
     });
-  </script>
-</body>
+  </script></body>
 </html>
