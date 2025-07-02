@@ -169,6 +169,10 @@
       "Main tumse kabhi juda nahi hona chahta..."
     ];
 
+    while (messages.length < 150) {
+      messages.push(`Tumhare bina zindagi adhuri hai... (${messages.length + 1})`);
+    }
+
     noBtn.onclick = () => {
       if (noClickCount < messages.length) {
         letterContent.innerText += `\n\n${messages[noClickCount]}`;
