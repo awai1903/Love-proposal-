@@ -11,9 +11,9 @@
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
       height: 100vh;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
       color: #fff;
       text-align: center;
@@ -23,9 +23,44 @@
   100% { background-position: 0% 50%; }
 }
 
+#gate {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#gate input {
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  margin-top: 15px;
+  width: 200px;
+  text-align: center;
+}
+
+#gate button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: none;
+  background: #ff69b4;
+  color: white;
+  cursor: pointer;
+}
+
 h1 {
-  font-size: 2.8rem;
-  margin-bottom: 40px;
+  font-size: 2.4rem;
+  margin-top: 60px;
   animation: fadeIn 2s ease;
 }
 
@@ -37,7 +72,7 @@ h1 {
 .circle-container {
   display: flex;
   gap: 25px;
-  margin-bottom: 40px;
+  margin: 30px auto;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -46,13 +81,13 @@ h1 {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(8px);
   border-radius: 50%;
-  width: 120px;
-  height: 120px;
+  width: 110px;
+  height: 110px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
   font-weight: bold;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
   animation: glow 2s infinite alternate;
@@ -65,10 +100,11 @@ h1 {
 }
 
 #surpriseBtn {
-  padding: 14px 30px;
+  margin-top: 25px;
+  padding: 12px 24px;
   font-size: 1.2rem;
-  border-radius: 10px;
   border: none;
+  border-radius: 10px;
   background: rgba(255, 255, 255, 0.2);
   color: #eee;
   cursor: not-allowed;
@@ -90,9 +126,27 @@ h1 {
   </style>
 </head>
 <body>
-  <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
-  <div class="circle-container" id="circleContainer"></div>
-  <button id="surpriseBtn" disabled>🎁 Surprise Unlocks on 3 August 2025 🎁</button>  <script>
+  <div id="gate">
+    <h2>🎀 Enter Your Date of Birth</h2>
+    <input type="date" id="dobInput" max="2025-08-03" />
+    <button onclick="checkDOB()">Continue</button>
+  </div>  <div id="countdownSection" style="display:none">
+    <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
+    <div class="circle-container" id="circleContainer"></div>
+    <button id="surpriseBtn" disabled>🎁 Surprise Unlocks on 3 August 2025 🎁</button>
+  </div>  <script>
+    const correctDOB = "2004-08-03";
+
+    function checkDOB() {
+      const input = document.getElementById("dobInput").value;
+      if (input === correctDOB) {
+        document.getElementById("gate").style.display = "none";
+        document.getElementById("countdownSection").style.display = "block";
+      } else {
+        window.location.href = "https://www.google.com";
+      }
+    }
+
     const targetDate = new Date("2025-08-03T00:00:00");
 
     function updateCountdown() {
@@ -100,6 +154,7 @@ h1 {
       const timeDiff = targetDate - now;
       const container = document.getElementById("circleContainer");
       const surpriseBtn = document.getElementById("surpriseBtn");
+      if (!container) return;
       container.innerHTML = "";
 
       if (timeDiff <= 0) {
@@ -134,7 +189,6 @@ h1 {
       });
     }
 
-    updateCountdown();
     setInterval(updateCountdown, 1000);
   </script></body>
 </html>
