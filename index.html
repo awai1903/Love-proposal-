@@ -1,76 +1,105 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>🎁 Surprise Countdown</title>
+  <title>🎁 Legendary Countdown</title>
   <style>
-    body {
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
       font-family: 'Segoe UI', sans-serif;
-      text-align: center;
-      color: white;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4, #fbc2eb);
-    }
-
-    h1 {
-      margin-top: 30px;
-      font-size: 2.8rem;
-    }
-
-    .circle-container {
+      height: 100vh;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 15px;
-      margin: 30px auto;
-      max-width: 90%;
-    }
-
-    .circle {
-      background-color: rgba(0,0,0,0.3);
-      border-radius: 50%;
-      width: 110px;
-      height: 110px;
-      display: flex;
       align-items: center;
-      justify-content: center;
-      font-size: 1rem;
-      font-weight: bold;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
+      background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #fad0c4, #ff9a9e);
+      background-size: 400% 400%;
+      animation: gradientBG 10s ease infinite;
+      color: #fff;
+      text-align: center;
+      flex-direction: column;
+    }@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
 
-    #surpriseBtn {
-      margin-top: 25px;
-      padding: 12px 24px;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 10px;
-      cursor: not-allowed;
-      color: #888;
-      background: #ccc;
-      box-shadow: none;
-      transition: all 0.3s ease;
-    }
+h1 {
+  font-size: 2.8rem;
+  margin-bottom: 30px;
+  animation: fadeInDown 1s ease-out;
+}
 
-    #surpriseBtn.enabled {
-      background: gold;
-      color: black;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(255,255,255,0.6);
-    }
+.circle-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
 
-    #surpriseBtn.enabled:hover {
-      background: #fff700;
-    }
+.circle {
+  background-color: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  animation: popIn 0.8s ease-in-out;
+  backdrop-filter: blur(4px);
+}
+
+.circle span {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+#surpriseBtn {
+  margin-top: 40px;
+  padding: 14px 28px;
+  font-size: 1.3rem;
+  border: none;
+  border-radius: 12px;
+  cursor: not-allowed;
+  color: #aaa;
+  background: rgba(255,255,255,0.3);
+  box-shadow: none;
+  transition: all 0.3s ease;
+}
+
+#surpriseBtn.enabled {
+  background: gold;
+  color: black;
+  cursor: pointer;
+  box-shadow: 0 0 20px rgba(255,255,255,0.7);
+}
+
+#surpriseBtn.enabled:hover {
+  background: #fff700;
+}
+
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
   </style>
 </head>
 <body>
-
-  <h1>🎂 Countdown to Hamna's 21st Birthday 🎂</h1>
+  <h1>🎉 Countdown to Hamna's 21st Birthday 🎉</h1>
   <div class="circle-container" id="circleContainer"></div>
-  <button id="surpriseBtn" disabled>🎁 Surprise Unlocks on 3 August 2025 🎁</button>
-
-  <script>
+  <button id="surpriseBtn" disabled>🎁 Surprise Unlocks on 3 August 2025 🎁</button>  <script>
     const targetDate = new Date("2025-08-03T00:00:00");
 
     function updateCountdown() {
@@ -86,7 +115,7 @@
         surpriseBtn.classList.add("enabled");
         surpriseBtn.innerText = "🎉 Tap for the Surprise 🎉";
         surpriseBtn.onclick = () => {
-          window.location.href = "surprise.html"; // Or use alert("Happy Birthday!");
+          window.location.href = "surprise.html";
         };
         return;
       }
@@ -108,14 +137,12 @@
       data.forEach(item => {
         const div = document.createElement("div");
         div.className = "circle";
-        div.innerHTML = `<div>${item.value}<br>${item.label}</div>`;
+        div.innerHTML = `<span>${item.value}</span><div>${item.label}</div>`;
         container.appendChild(div);
       });
     }
 
     updateCountdown();
     setInterval(updateCountdown, 1000);
-  </script>
-
-</body>
+  </script></body>
 </html>
