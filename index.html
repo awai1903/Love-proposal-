@@ -48,42 +48,74 @@
     }
 
     /* 2. Countdown Page */
-    #countdown {
-      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
-    }
+<section id="countdown" style="display:none;">
+  <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
+  <div class="circle-container" id="circleContainer"></div>
+  <button id="unlockBtn" style="display:none;" onclick="revealSurprise()">🎉 Click Here for Surprise 🎉</button>
+</section>
+    
+<script>
+  const correctDOB = "2004-08-03";
+  const targetDate = new Date("2025-08-03T00:00:00");
 
-    .circle-container {
-      display: flex;
-      gap: 25px;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 20px;
+  function checkDOB() {
+    const input = document.getElementById("dobInput").value;
+    if (input === correctDOB) {
+      document.getElementById("dobPage").style.display = "none";
+      document.getElementById("countdown").style.display = "flex";
+      updateCountdown();
+    } else {
+      window.location.href = "https://www.google.com";
     }
+  }
 
-    .circle {
-      background: rgba(255,255,255,0.2);
-      width: 110px;
-      height: 110px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      font-weight: bold;
-      box-shadow: 0 0 15px rgba(0,0,0,0.3);
-    }
+  function updateCountdown() {
+    const now = new Date();
+    const diff = targetDate - now;
 
-    #unlockBtn {
-      margin-top: 20px;
-      padding: 12px 24px;
-      font-size: 1.1rem;
-      border: none;
-      border-radius: 8px;
-      background: #ff69b4;
-      color: white;
-      cursor: pointer;
-      display: none;
+    const sec = Math.floor(diff / 1000) % 60;
+    const min = Math.floor(diff / (1000 * 60)) % 60;
+    const hr = Math.floor(diff / (1000 * 60 * 60)) % 24;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
+    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
+
+    const data = [
+      { label: "Months", value: months },
+      { label: "Days", value: days },
+      { label: "Hours", value: hr },
+      { label: "Minutes", value: min },
+      { label: "Seconds", value: sec },
+    ];
+
+    const container = document.getElementById("circleContainer");
+    container.innerHTML = "";
+    data.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "circle";
+      div.innerHTML = `<div>${item.value}</div><div>${item.label}</div>`;
+      container.appendChild(div);
+    });
+
+    if (diff <= 0) {
+      document.getElementById("unlockBtn").style.display = "inline-block";
+    } else {
+      setTimeout(updateCountdown, 1000);
     }
+  }
+
+  function revealSurprise() {
+    document.getElementById("countdown").style.display = "none";
+    document.getElementById("gallery").style.display = "flex";
+
+    setTimeout(() => {
+      document.getElementById("letter").style.display = "flex";
+    }, 2000);
+
+    setTimeout(() => {
+      document.getElementById("final").style.display = "flex";
+    }, 4000);
+  }
+</script>
 
     /* 3. BTS Gallery Page */
     #gallery {
