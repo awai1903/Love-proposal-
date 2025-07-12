@@ -101,6 +101,29 @@ h1, h2 {
   opacity: 1;  
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);  
 }  
+    .wish-text {
+  display: none;
+  margin-top: 10px;
+  font-size: 0.95rem;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 12px 18px;
+  border-radius: 10px;
+  animation: fadeIn 1s ease forwards;
+  backdrop-filter: blur(5px);
+  box-shadow: 0 0 15px rgba(255,255,255,0.3);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
 .bts-gallery {  
   display: flex;  
@@ -174,7 +197,9 @@ h1, h2 {
     <h2>🎀 Enter Your Date of Birth</h2>  
     <input type="date" id="dobInput" max="2099-12-31" />  
     <button onclick="checkDOB()">Continue</button>  
-  </section>    <section id="countdownSection" style="display:none">  
+  </section>  
+  
+  <section id="countdownSection" style="display:none">  
     <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>  
     <div class="circle-container" id="circleContainer"></div>  
     <button id="surpriseBtn" >💝 Click Here for the Surprise 💝</button>  
@@ -247,9 +272,12 @@ h1, h2 {
   }  
 function showMessage(element, message) {
   const box = element.querySelector(".wish-text");
+  box.style.display = "none"; // Reset before animation
+  void box.offsetWidth; // Force reflow (trick to restart animation)
   box.innerText = message;
   box.style.display = "block";
-  }
+  box.style.animation = "fadeIn 1s ease forwards";
+}
   
   function updateCountdown() {  
     const now = new Date();  
