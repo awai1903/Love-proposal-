@@ -98,21 +98,15 @@
       font-size: 1.2rem;
       border: none;
       border-radius: 10px;
-      background: rgba(255, 255, 255, 0.2);
-      color: #eee;
-      cursor: not-allowed;
-      transition: 0.3s;
-      font-weight: bold;
-    }
-
-    #surpriseBtn.enabled {
       background: #ff69b4;
       color: white;
       cursor: pointer;
+      transition: 0.3s;
+      font-weight: bold;
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     }
 
-    #surpriseBtn.enabled:hover {
+    #surpriseBtn:hover {
       background: #ff85c1;
     }
 
@@ -158,22 +152,29 @@
 
     .wish {
       position: absolute;
-      bottom: 110%;
+      top: -100px;
       left: 50%;
       transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.7);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(8px);
       color: #fff;
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      width: 180px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      font-size: 0.9rem;
+      width: 220px;
+      text-align: center;
+      line-height: 1.4;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.25);
       opacity: 0;
-      transition: opacity 0.4s ease;
+      transition: opacity 0.4s ease, transform 0.4s ease;
       pointer-events: none;
+      font-family: 'Poppins', sans-serif;
+      z-index: 10;
     }
 
     .bts-gallery div:hover .wish {
       opacity: 1;
+      transform: translateX(-50%) translateY(-6px);
     }
   </style>
 </head>
@@ -188,7 +189,7 @@
 <div id="countdownSection" style="display:none">
   <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
   <div class="circle-container" id="circleContainer"></div>
-  <button id="surpriseBtn" class="enabled">💝 Click Here for the Surprise 💝</button>
+  <button id="surpriseBtn">💝 Click Here for the Surprise 💝</button>
 </div>
 
 <div id="btsSection" style="display:none">
@@ -203,20 +204,24 @@
     <div><img src="jung kook.jpg" alt="Jungkook" /><div class="wish">Golden Maknae says: Let this be your golden day 🐰</div><p>Jungkook</p></div>
   </div>
 </div>
+
 <script>
   const correctDOB = "2004-08-03";
+
   function checkDOB() {
     const input = document.getElementById("dobInput").value;
     if (input === correctDOB) {
       document.getElementById("gate").style.display = "none";
       document.getElementById("countdownSection").style.display = "block";
-      document.getElementById("surpriseBtn").disabled = false;
-      document.getElementById("surpriseBtn").classList.add("enabled");
-      document.getElementById("surpriseBtn").innerText = "💝 Click Here for the Surprise 💝";
     } else {
       window.location.href = "https://www.google.com";
     }
   }
+
+  document.getElementById("surpriseBtn").onclick = () => {
+    document.getElementById("countdownSection").style.display = "none";
+    document.getElementById("btsSection").style.display = "block";
+  };
 
   const targetDate = new Date("2025-08-03T00:00:00");
 
@@ -248,14 +253,6 @@
       container.appendChild(div);
     });
   }
-
-  // Show BTS section on surprise click
-  document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("surpriseBtn").onclick = () => {
-      document.getElementById("countdownSection").style.display = "none";
-      document.getElementById("btsSection").style.display = "block";
-    };
-  });
 
   setInterval(updateCountdown, 1000);
 </script>
