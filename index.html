@@ -188,7 +188,7 @@
 <div id="countdownSection" style="display:none">
   <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
   <div class="circle-container" id="circleContainer"></div>
-  <button id="surpriseBtn" enabled>🎁 Surprise Unlocks on 3 August 2025 🎁</button>
+  <button id="surpriseBtn" class="enabled">💝 Click Here for the Surprise 💝</button>
 </div>
 
 <div id="btsSection" style="display:none">
@@ -203,39 +203,29 @@
     <div><img src="jung kook.jpg" alt="Jungkook" /><div class="wish">Golden Maknae says: Let this be your golden day 🐰</div><p>Jungkook</p></div>
   </div>
 </div>
-
 <script>
   const correctDOB = "2004-08-03";
-  const targetDate = new Date("2025-08-03T00:00:00");
-
   function checkDOB() {
     const input = document.getElementById("dobInput").value;
     if (input === correctDOB) {
       document.getElementById("gate").style.display = "none";
       document.getElementById("countdownSection").style.display = "block";
+      document.getElementById("surpriseBtn").disabled = false;
+      document.getElementById("surpriseBtn").classList.add("enabled");
+      document.getElementById("surpriseBtn").innerText = "💝 Click Here for the Surprise 💝";
     } else {
       window.location.href = "https://www.google.com";
     }
   }
 
+  const targetDate = new Date("2025-08-03T00:00:00");
+
   function updateCountdown() {
     const now = new Date();
     const timeDiff = targetDate - now;
     const container = document.getElementById("circleContainer");
-    const surpriseBtn = document.getElementById("surpriseBtn");
     if (!container) return;
     container.innerHTML = "";
-
-    if (timeDiff <= 0) {
-      surpriseBtn.disabled = false;
-      surpriseBtn.classList.add("enabled");
-      surpriseBtn.innerText = "💝 Click Here for the Surprise 💝";
-      surpriseBtn.onclick = () => {
-        document.getElementById("countdownSection").style.display = "none";
-        document.getElementById("btsSection").style.display = "block";
-      };
-      return;
-    }
 
     const seconds = Math.floor(timeDiff / 1000) % 60;
     const minutes = Math.floor(timeDiff / (1000 * 60)) % 60;
@@ -258,6 +248,14 @@
       container.appendChild(div);
     });
   }
+
+  // Show BTS section on surprise click
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("surpriseBtn").onclick = () => {
+      document.getElementById("countdownSection").style.display = "none";
+      document.getElementById("btsSection").style.display = "block";
+    };
+  });
 
   setInterval(updateCountdown, 1000);
 </script>
