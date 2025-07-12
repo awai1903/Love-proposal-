@@ -8,11 +8,11 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
+      color: #fff;
+      text-align: center;
       background: linear-gradient(135deg, #ffc3a0, #ffafbd, #ffb6c1);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
-      color: #fff;
-      text-align: center;
     }
 
     @keyframes gradientShift {
@@ -21,22 +21,25 @@
       100% { background-position: 0% 50%; }
     }
 
-    #gate {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
+    section {
       height: 100vh;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
+      padding: 40px 20px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      scroll-snap-align: start;
     }
 
-    #gate h2 {
-      color: #ff69b4;
+    .scroll-container {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+    }
+
+    h1, h2 {
+      margin-bottom: 20px;
+      color: #fff;
     }
 
     #gate input, #gate button {
@@ -45,7 +48,7 @@
       border-radius: 5px;
       border: none;
       margin-top: 15px;
-      width: 200px;
+      width: 220px;
       text-align: center;
     }
 
@@ -55,21 +58,9 @@
       cursor: pointer;
     }
 
-    h1 {
-      font-size: 2.4rem;
-      margin-top: 60px;
-      animation: fadeIn 2s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
     .circle-container {
       display: flex;
-      gap: 25px;
-      margin: 30px auto;
+      gap: 20px;
       flex-wrap: wrap;
       justify-content: center;
     }
@@ -84,11 +75,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: bold;
       box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
       animation: glow 2s infinite alternate;
-      color: #fff;
     }
 
     @keyframes glow {
@@ -104,8 +94,14 @@
       border-radius: 10px;
       background: #ff69b4;
       color: white;
-      cursor: pointer;
       font-weight: bold;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    #surpriseBtn.enabled {
+      cursor: pointer;
+      opacity: 1;
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     }
 
@@ -114,173 +110,133 @@
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
-      padding: 30px;
     }
 
     .bts-gallery div {
-      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-      animation: fadeIn 1s ease-in-out;
     }
 
     .bts-gallery img {
       width: 130px;
       height: 130px;
-      object-fit: cover;
       border-radius: 50%;
+      object-fit: cover;
       box-shadow: 0 0 12px rgba(255, 105, 180, 0.5);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-      border: 3px solid white;
+      transition: 0.3s ease;
     }
 
     .bts-gallery img:hover {
       transform: scale(1.08);
-      box-shadow: 0 0 30px rgba(255, 20, 147, 0.8);
     }
 
     .bts-gallery p {
-      margin-top: 10px;
-      font-weight: 600;
-      font-size: 1rem;
-      color: white;
-      text-shadow: 0 0 4px rgba(0,0,0,0.4);
-    }
-
-    .wish {
-      position: absolute;
-      bottom: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: rgba(0, 0, 0, 0.7);
+      margin-top: 8px;
+      font-weight: bold;
       color: #fff;
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      width: 180px;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-      pointer-events: none;
-      z-index: 10;
     }
 
-    .bts-gallery div:hover .wish {
-      opacity: 1;
-    }
-
-    .next-btn {
-      margin: 30px;
-      padding: 12px 26px;
+    #seeLetterBtn {
+      margin-top: 30px;
+      padding: 12px 24px;
       font-size: 1.1rem;
-      background: #ffffff22;
+      background: rgba(255, 255, 255, 0.15);
       border: none;
-      border-radius: 10px;
       color: white;
+      border-radius: 10px;
       cursor: pointer;
       font-weight: bold;
-      box-shadow: 0 0 10px rgba(255,255,255,0.3);
-      transition: all 0.3s ease;
+      box-shadow: 0 0 12px rgba(255,255,255,0.3);
     }
 
-    .next-btn:hover {
-      background: #ff69b4;
-    }
-
-    #taeLetter {
+    #letterSection {
       display: none;
-      max-width: 600px;
-      margin: 40px auto;
       padding: 30px;
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(8px);
-      border-radius: 20px;
-      color: white;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .korean {
+      font-family: 'Poppins', sans-serif;
       font-size: 1.1rem;
-      line-height: 1.7;
-      box-shadow: 0 0 15px rgba(255,255,255,0.3);
-      text-align: left;
+      line-height: 1.8;
+      color: #ffdee9;
     }
 
-    #taeLetter p {
-      margin-bottom: 15px;
-    }
-
-    #taeLetter .korean {
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    #taeLetter .english {
-      font-style: italic;
-      opacity: 0.9;
+    .english {
+      font-size: 1rem;
+      margin-top: 10px;
+      color: #fff;
     }
   </style>
 </head>
 <body>
+<div class="scroll-container">
 
-<div id="gate">
-  <h2>🎀 Enter Your Date of Birth</h2>
-  <input type="date" id="dobInput" max="2025-08-03" />
-  <button onclick="checkDOB()">Continue</button>
-</div>
+  <section id="gate">
+    <h2>🎀 Enter Your Date of Birth</h2>
+    <input type="date" id="dobInput" max="2025-08-03" />
+    <button onclick="checkDOB()">Continue</button>
+  </section>
 
-<div id="countdownSection" style="display:none">
-  <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
-  <div class="circle-container" id="circleContainer"></div>
-  <button id="surpriseBtn" disabled>💝 Click Here for the Surprise 💝</button>
+  <section id="countdownSection" style="display:none">
+    <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
+    <div class="circle-container" id="circleContainer"></div>
+    <button id="surpriseBtn" disabled>💝 Click Here for the Surprise 💝</button>
+  </section>
 
-</div>
+  <section id="btsSection" style="display:none">
+    <h2>💜 Your BTS Angels Wishing Hamna!</h2>
+    <div class="bts-gallery">
+      <div><img src="jin.jpg" /><p>Jin</p></div>
+      <div><img src="suga.jpg" /><p>Suga</p></div>
+      <div><img src="j hope.jpg" /><p>J-Hope</p></div>
+      <div><img src="rm.jpg" /><p>RM</p></div>
+      <div><img src="jimin.jpg" /><p>Jimin</p></div>
+      <div><img src="v.jpg" /><p>V</p></div>
+      <div><img src="jung kook.jpg" /><p>Jungkook</p></div>
+    </div>
+    <button id="seeLetterBtn">📜 Wanna see Taehyung's letter for you?</button>
+  </section>
 
-<div id="btsSection" style="display:none">
-  <h2>💜 Your BTS Angels Wishing Hamna!</h2>
-  <div class="bts-gallery">
-    <div><img src="jin.jpg" alt="Jin" /><div class="wish">Hamna-ssi~ I hope you smile today more than ever! 💫</div><p>Jin</p></div>
-    <div><img src="suga.jpg" alt="Suga" /><div class="wish">Birthday is just a start... let the beat drop in your favor! 🔥</div><p>Suga</p></div>
-    <div><img src="j hope.jpg" alt="J-Hope" /><div class="wish">Hamna, sunshine like me wishes you endless light ☀️</div><p>J-Hope</p></div>
-    <div><img src="rm.jpg" alt="RM" /><div class="wish">To the brilliant mind — may your year be poetic 📚</div><p>RM</p></div>
-    <div><img src="jimin.jpg" alt="Jimin" /><div class="wish">You deserve all the love in the universe today 💗</div><p>Jimin</p></div>
-    <div><img src="v.jpg" alt="V" /><div class="wish">From TaeTae: Saranghae, Hamna~ stay magical ✨</div><p>V</p></div>
-    <div><img src="jung kook.jpg" alt="Jungkook" /><div class="wish">Golden Maknae says: Let this be your golden day 🐰</div><p>Jungkook</p></div>
-  </div>
+  <section id="letterSection">
+    <h2>💌 From Kim Taehyung (V)</h2>
+    <div class="korean">
+      생일 축하해요, 함나씨 💜<br>
+      오늘은 당신만을 위한 특별한 날이에요.<br>
+      당신의 웃음이 세상을 더 아름답게 만들어요.<br>
+      언제나 빛나는 별처럼 반짝이길 바라요.
+    </div>
+    <div class="english">
+      Happy Birthday, Hamna 💜<br>
+      Today is a special day just for you.<br>
+      Your smile makes the world more beautiful.<br>
+      May you always shine bright like a star.
+    </div>
+  </section>
 
-  <button class="next-btn" onclick="showTaeLetter()">💌 Wanna see Taehyung's letter for you?</button>
-
-  <div id="taeLetter">
-    <p class="korean">생일 축하해요, 함나~ 💜 오늘은 당신만의 특별한 날이에요.</p>
-    <p class="english">Happy Birthday, Hamna~ 💜 Today is your very own special day.</p>
-
-    <p class="korean">당신의 웃음은 세상을 더 빛나게 해요. 항상 자신을 믿고, 빛나는 별처럼 반짝이길 바래요.</p>
-    <p class="english">Your smile lights up the world. Always believe in yourself and keep shining like a star.</p>
-
-    <p class="korean">BTS는 언제나 당신을 응원해요. 사랑해요 💜</p>
-    <p class="english"> BTS will always cheer you on. I love you 💜</p>
-
-    <p style="text-align:right">— 김태형 (V)</p>
-  </div>
 </div>
 
 <script>
   const correctDOB = "2004-08-03";
+  const surpriseBtn = document.getElementById("surpriseBtn");
+  const targetDate = new Date("2025-08-03T00:00:00");
 
   function checkDOB() {
     const input = document.getElementById("dobInput").value;
     if (input === correctDOB) {
       document.getElementById("gate").style.display = "none";
-      document.getElementById("countdownSection").style.display = "block";
-      handleSurpriseButton(); // Check if button should be enabled
+      document.getElementById("countdownSection").style.display = "flex";
     } else {
       window.location.href = "https://www.google.com";
     }
   }
 
-  const targetDate = new Date("2025-08-03T00:00:00");
-
   function updateCountdown() {
     const now = new Date();
     const timeDiff = targetDate - now;
     const container = document.getElementById("circleContainer");
-    if (!container) return;
     container.innerHTML = "";
 
     const seconds = Math.floor(timeDiff / 1000) % 60;
@@ -304,41 +260,25 @@
       container.appendChild(div);
     });
 
-    handleSurpriseButton();
-  }
-
-  function handleSurpriseButton() {
-    const now = new Date();
-    const surpriseBtn = document.getElementById("surpriseBtn");
-    const isBirthday = now.toISOString().split("T")[0] === "2025-08-03";
-
-    if (isBirthday) {
+    const today = now.toISOString().split("T")[0];
+    if (today === "2025-08-03") {
       surpriseBtn.disabled = false;
-      surpriseBtn.style.opacity = "1";
-      surpriseBtn.style.cursor = "pointer";
-    } else {
-      surpriseBtn.disabled = true;
-      surpriseBtn.style.opacity = "0.5";
-      surpriseBtn.style.cursor = "not-allowed";
+      surpriseBtn.classList.add("enabled");
     }
   }
 
   setInterval(updateCountdown, 1000);
 
-  document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("surpriseBtn").onclick = () => {
-      if (document.getElementById("surpriseBtn").disabled) return;
+  surpriseBtn.onclick = () => {
+    if (!surpriseBtn.disabled) {
       document.getElementById("countdownSection").style.display = "none";
-      document.getElementById("btsSection").style.display = "block";
-    };
-  });
+      document.getElementById("btsSection").style.display = "flex";
+    }
+  };
 
-  function showTaeLetter() {
-    const letter = document.getElementById("taeLetter");
-    letter.style.display = "block";
-    window.scrollTo({ top: letter.offsetTop, behavior: 'smooth' });
-  }
+  document.getElementById("seeLetterBtn").onclick = () => {
+    document.getElementById("letterSection").style.display = "flex";
+  };
 </script>
-
 </body>
 </html>
