@@ -178,19 +178,44 @@ h1, h2 {
     <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>  
     <div class="circle-container" id="circleContainer"></div>  
     <button id="surpriseBtn" >💝 Click Here for the Surprise 💝</button>  
-  </section>    <section id="btsSection" style="display:none">  
-    <h2>💜 Your BTS Angels Wishing Hamna!</h2>  
-    <div class="bts-gallery">  
-      <div><img src="jin.jpg" /><p>Jin</p></div>  
-      <div><img src="suga.jpg" /><p>Suga</p></div>  
-      <div><img src="j hope.jpg" /><p>J-Hope</p></div>  
-      <div><img src="rm.jpg" /><p>RM</p></div>  
-      <div><img src="jimin.jpg" /><p>Jimin</p></div>  
-      <div><img src="v.jpg" /><p>V</p></div>  
-      <div><img src="jung kook.jpg" /><p>Jungkook</p></div>  
-    </div>  
-    <button id="seeLetterBtn">📜 Wanna see Taehyung's letter for you?</button>  
-  </section>    <section id="letterSection">  
+  </section>   
+  
+  <section id="btsSection" style="display:none">
+  <h2>💜 Your BTS Angels Wishing Hamna!</h2>
+  <div class="bts-gallery">
+    <div onclick="showMessage(this, 'Hamna, always smile like sunshine. — Jin')">
+      <img src="jin.jpg" /><p>Jin</p>
+      <div class="wish-text" style="display:none; margin-top:10px;"></div>
+    </div>
+    <div onclick="showMessage(this, 'May your life be full of melodies. — Suga')">
+      <img src="suga.jpg" /><p>Suga</p>
+      <div class="wish-text" style="display:none; margin-top:10px;"></div>
+    </div>
+    <div onclick="showMessage(this, 'Dance through life happily, Hamna! — J-Hope')">
+      <img src="j hope.jpg" /><p>J-Hope</p>
+      <div class="wish-text" style="display:none; margin-top:10px;"></div>
+    </div>
+    <div onclick="showMessage(this, 'Your dreams matter. Keep going! — RM')">
+      <img src="rm.jpg" /><p>RM</p>
+      <div class="wish-text" style="display:none; margin-top:10px;"></div>
+    </div>
+    <div onclick="showMessage(this, 'You’re special, just the way you are. — Jimin')">
+      <img src="jimin.jpg" /><p>Jimin</p>
+      <div class="wish-text" style="display:none; margin-top:10px;"></div>
+    </div>
+    <div onclick="showMessage(this, 'Stay magical, stay you, Hamna. — V')">
+      <img src="v.jpg" /><p>V</p>
+      <div class="wish-text" style="display:none; margin-top:10px;"></div>
+    </div>
+    <div onclick="showMessage(this, 'You light up the world with your energy. — Jungkook')">
+      <img src="jung kook.jpg" /><p>Jungkook</p>
+      <div class="wish-text" style="display:none; margin-top:10px;"></div>
+    </div>
+  </div>
+  <button id="seeLetterBtn">📜 Wanna see Taehyung's letter for you?</button>
+  </section>
+  
+  <section id="letterSection">  
     <h2>💌 From Kim Taehyung (V)</h2>  
     <div class="korean">  
       생일 축하해요, 함나씨 💜<br>  
@@ -204,7 +229,9 @@ h1, h2 {
       Your smile makes the world more beautiful.<br>  
       May you always shine bright like a star.  
     </div>  
-  </section>  </div>  <script>  
+  </section>  </div> 
+  
+  <script>  
   const correctDOB = "2004-08-03";  
   const surpriseBtn = document.getElementById("surpriseBtn");  
   const targetDate = new Date("2025-08-03T00:00:00");  
@@ -218,6 +245,11 @@ h1, h2 {
       window.location.href = "https://www.google.com";  
     }  
   }  
+function showMessage(element, message) {
+  const box = element.querySelector(".wish-text");
+  box.innerText = message;
+  box.style.display = "block";
+  }
   
   function updateCountdown() {  
     const now = new Date();  
