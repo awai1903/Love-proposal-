@@ -2,72 +2,111 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Hamna's Legendary Birthday</title>
+  <title>Hamna's Special Birthday Page</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body {
-      scroll-behavior: smooth;
+    body {
+      margin: 0;
       font-family: 'Poppins', sans-serif;
-      overflow-x: hidden;
-    }
-    section {
-      height: 100vh;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 20px;
-    }
-    .gradient-bg {
       background: linear-gradient(135deg, #ffc3a0, #ffafbd, #ffb6c1);
       background-size: 400% 400%;
       animation: gradientShift 15s ease infinite;
-      color: white;
+      color: #fff;
+      text-align: center;
     }
+
     @keyframes gradientShift {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-    input, button {
-      padding: 12px;
-      font-size: 1rem;
-      border-radius: 6px;
-      border: none;
-      margin-top: 15px;
-    }
-    button {
-      background: #ff69b4;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
 
-    .circle-container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 25px;
-    }
-    .circle {
-      background: rgba(255,255,255,0.2);
-      border-radius: 50%;
-      width: 110px;
-      height: 110px;
-      backdrop-filter: blur(6px);
+    #gate {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100vh;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      font-weight: bold;
-      animation: glow 2s infinite alternate;
     }
+
+    #gate h2 {
+      color: #ff69b4;
+    }
+
+    #gate input, #gate button {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 5px;
+      border: none;
+      margin-top: 15px;
+      width: 200px;
+      text-align: center;
+    }
+
+    #gate button {
+      background: #ff69b4;
+      color: white;
+      cursor: pointer;
+    }
+
+    h1 {
+      font-size: 2.4rem;
+      margin-top: 60px;
+      animation: fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .circle-container {
+      display: flex;
+      gap: 25px;
+      margin: 30px auto;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .circle {
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border-radius: 50%;
+      width: 110px;
+      height: 110px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+      animation: glow 2s infinite alternate;
+      color: #fff;
+    }
+
     @keyframes glow {
-      from { box-shadow: 0 0 10px rgba(255,255,255,0.2); }
-      to { box-shadow: 0 0 25px rgba(255,255,255,0.5); }
+      from { box-shadow: 0 0 10px rgba(255, 255, 255, 0.2); }
+      to { box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); }
+    }
+
+    #surpriseBtn {
+      margin-top: 25px;
+      padding: 12px 24px;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 10px;
+      background: #ff69b4;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     }
 
     .bts-gallery {
@@ -77,135 +116,129 @@
       gap: 30px;
       padding: 30px;
     }
+
     .bts-gallery div {
+      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
+      animation: fadeIn 1s ease-in-out;
     }
+
     .bts-gallery img {
       width: 130px;
       height: 130px;
-      border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 0 12px rgba(255,105,180,0.6);
-      transition: 0.4s;
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(255, 105, 180, 0.5);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      border: 3px solid white;
     }
+
     .bts-gallery img:hover {
-      transform: scale(1.05);
+      transform: scale(1.08);
+      box-shadow: 0 0 30px rgba(255, 20, 147, 0.8);
     }
+
     .bts-gallery p {
       margin-top: 10px;
+      font-weight: 600;
       font-size: 1rem;
       color: white;
+      text-shadow: 0 0 4px rgba(0,0,0,0.4);
     }
 
-    #letter {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin-top: 20px;
-      line-height: 2rem;
+    .wish {
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      color: #fff;
+      padding: 10px 14px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      width: 180px;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+      z-index: 10;
     }
-    .korean { font-family: 'Arial', sans-serif; font-size: 1.3rem; font-weight: bold; color: #fff; }
-    .english { margin-top: 10px; font-style: italic; }
 
-    .hidden { display: none; }
+    .bts-gallery div:hover .wish {
+      opacity: 1;
+    }
+
+    .next-surprise {
+      margin: 40px auto 60px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px 30px;
+      border-radius: 12px;
+      width: fit-content;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
   </style>
 </head>
 <body>
 
-<!-- PAGE 1: DOB GATE -->
-<section class="gradient-bg" id="gateSection">
-  <h2 style="color: #fff;">🎀 Enter Your Date of Birth</h2>
+<div id="gate">
+  <h2>🎀 Enter Your Date of Birth</h2>
   <input type="date" id="dobInput" max="2025-08-03" />
   <button onclick="checkDOB()">Continue</button>
-</section>
+</div>
 
-<!-- PAGE 2: COUNTDOWN -->
-<section class="gradient-bg hidden" id="countdownSection">
-  <h1>🎉 Countdown to Hamna's Birthday 🎉</h1>
+<div id="countdownSection" style="display:none">
+  <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
   <div class="circle-container" id="circleContainer"></div>
-  <button onclick="goToGallery()">💝 Click Here for the Surprise 💝</button>
-</section>
+  <button id="surpriseBtn">💝 Click Here for the Surprise 💝</button>
+</div>
 
-<!-- PAGE 3: BTS GALLERY -->
-<section class="gradient-bg hidden" id="gallerySection">
+<div id="btsSection" style="display:none">
   <h2>💜 Your BTS Angels Wishing Hamna!</h2>
   <div class="bts-gallery">
-    <div><img src="jin.jpg" alt="Jin"><p>Jin: Smile always, Hamna 💫</p></div>
-    <div><img src="suga.jpg" alt="Suga"><p>Suga: Let your beat drop 🔥</p></div>
-    <div><img src="j hope.jpg" alt="J-Hope"><p>J-Hope: Sunshine for you ☀️</p></div>
-    <div><img src="rm.jpg" alt="RM"><p>RM: Stay poetic 📚</p></div>
-    <div><img src="jimin.jpg" alt="Jimin"><p>Jimin: Love surrounds you 💖</p></div>
-    <div><img src="v.jpg" alt="V"><p>V: Saranghae, Hamna~ ✨</p></div>
-    <div><img src="jung kook.jpg" alt="Jungkook"><p>JK: Your golden day 🐰</p></div>
+    <div><img src="jin.jpg" alt="Jin" /><div class="wish">Hamna-ssi~ I hope you smile today more than ever! 💫</div><p>Jin</p></div>
+    <div><img src="suga.jpg" alt="Suga" /><div class="wish">Birthday is just a start... let the beat drop in your favor! 🔥</div><p>Suga</p></div>
+    <div><img src="j hope.jpg" alt="J-Hope" /><div class="wish">Hamna, sunshine like me wishes you endless light ☀️</div><p>J-Hope</p></div>
+    <div><img src="rm.jpg" alt="RM" /><div class="wish">To the brilliant mind — may your year be poetic 📚</div><p>RM</p></div>
+    <div><img src="jimin.jpg" alt="Jimin" /><div class="wish">You deserve all the love in the universe today 💗</div><p>Jimin</p></div>
+    <div><img src="v.jpg" alt="V" /><div class="wish">From TaeTae: Saranghae, Hamna~ stay magical ✨</div><p>V</p></div>
+    <div><img src="jung kook.jpg" alt="Jungkook" /><div class="wish">Golden Maknae says: Let this be your golden day 🐰</div><p>Jungkook</p></div>
   </div>
-</section>
-
-<!-- PAGE 4: KIM TAEHYUNG LETTER -->
-<section class="gradient-bg hidden" id="letterSection">
-  <h2>💌 A Special Letter from Kim Taehyung 💌</h2>
-  <div id="letter">
-    <div class="korean" id="koreanLine"></div>
-    <div class="english" id="englishLine"></div>
-  </div>
-</section>
-
-<!-- PAGE 5: FINAL PLACEHOLDER -->
-<section class="gradient-bg hidden" id="finalSection">
-  <h2>🎇 More Surprises Coming Soon 🎇</h2>
-</section>
+  <div class="next-surprise">🎉 More Surprises Loading... Stay Tuned, Hamna! 🎉</div>
+</div>
 
 <script>
   const correctDOB = "2004-08-03";
-  const koreanLines = [
-    "해피 버스데이, 햄나!", 
-    "너의 하루가 특별하고 빛나길 바래.", 
-    "BTS와 내가 너를 항상 응원해.", 
-    "항상 행복하고 건강하길 기도할게.", 
-    "사랑해, 햄나~ 💜"
-  ];
-  const englishLines = [
-    "Happy Birthday, Hamna!", 
-    "I hope your day is special and bright.", 
-    "BTS and I are always cheering for you.", 
-    "Wishing you happiness and good health.", 
-    "I love you, Hamna~ 💜"
-  ];
 
   function checkDOB() {
     const input = document.getElementById("dobInput").value;
     if (input === correctDOB) {
-      document.getElementById("gateSection").classList.add("hidden");
-      document.getElementById("countdownSection").classList.remove("hidden");
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("countdownSection").style.display = "block";
     } else {
       window.location.href = "https://www.google.com";
     }
   }
 
-  function goToGallery() {
-    document.getElementById("countdownSection").classList.add("hidden");
-    document.getElementById("gallerySection").classList.remove("hidden");
-    setTimeout(() => {
-      document.getElementById("gallerySection").classList.add("hidden");
-      document.getElementById("letterSection").classList.remove("hidden");
-      typeLetter(0);
-    }, 6000); // Show gallery 6 seconds before moving to letter
-  }
+  const targetDate = new Date("2025-08-03T00:00:00");
 
   function updateCountdown() {
-    const targetDate = new Date("2025-08-03T00:00:00");
     const now = new Date();
-    const diff = targetDate - now;
+    const timeDiff = targetDate - now;
     const container = document.getElementById("circleContainer");
+    if (!container) return;
     container.innerHTML = "";
 
-    const seconds = Math.floor(diff / 1000) % 60;
-    const minutes = Math.floor(diff / (1000 * 60)) % 60;
-    const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24)) % 30;
-    const months = Math.floor(diff / (1000 * 60 * 60 * 24 * 30.44));
+    const seconds = Math.floor(timeDiff / 1000) % 60;
+    const minutes = Math.floor(timeDiff / (1000 * 60)) % 60;
+    const hours = Math.floor(timeDiff / (1000 * 60 * 60)) % 24;
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) % 30;
+    const months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30.44)) % 12;
 
-    const timeData = [
+    const data = [
       { label: "Months", value: months },
       { label: "Days", value: days },
       { label: "Hours", value: hours },
@@ -213,7 +246,7 @@
       { label: "Seconds", value: seconds }
     ];
 
-    timeData.forEach(item => {
+    data.forEach(item => {
       const div = document.createElement("div");
       div.className = "circle";
       div.innerHTML = `<div>${item.value}</div><div>${item.label}</div>`;
@@ -221,20 +254,14 @@
     });
   }
 
-  function typeLetter(index) {
-    if (index >= koreanLines.length) {
-      setTimeout(() => {
-        document.getElementById("letterSection").classList.add("hidden");
-        document.getElementById("finalSection").classList.remove("hidden");
-      }, 5000);
-      return;
-    }
-    document.getElementById("koreanLine").innerText = koreanLines[index];
-    document.getElementById("englishLine").innerText = englishLines[index];
-    setTimeout(() => typeLetter(index + 1), 2500);
-  }
-
   setInterval(updateCountdown, 1000);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("surpriseBtn").onclick = () => {
+      document.getElementById("countdownSection").style.display = "none";
+      document.getElementById("btsSection").style.display = "block";
+    };
+  });
 </script>
 
 </body>
