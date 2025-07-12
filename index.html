@@ -180,6 +180,24 @@
       width: fit-content;
       box-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
+
+    #letterSection {
+      display: none;
+      padding: 60px 30px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    #koreanLine {
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+
+    #englishLine {
+      font-style: italic;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
@@ -207,11 +225,32 @@
     <div><img src="v.jpg" alt="V" /><div class="wish">From TaeTae: Saranghae, Hamna~ stay magical ✨</div><p>V</p></div>
     <div><img src="jung kook.jpg" alt="Jungkook" /><div class="wish">Golden Maknae says: Let this be your golden day 🐰</div><p>Jungkook</p></div>
   </div>
-  <div class="next-surprise">🎉 More Surprises Loading... Stay Tuned, Hamna! 🎉</div>
+  <div class="next-surprise">🎉 Now a special message from Kim Taehyung 🎉</div>
+</div>
+
+<!-- TAEHYUNG LETTER SECTION -->
+<div id="letterSection">
+  <h2>💌 From Kim Taehyung 💌</h2>
+  <div id="koreanLine"></div>
+  <div id="englishLine"></div>
 </div>
 
 <script>
   const correctDOB = "2004-08-03";
+  const koreanLines = [
+    "해피 버스데이, 햄나!",
+    "너의 하루가 특별하고 빛나길 바래.",
+    "BTS와 내가 너를 항상 응원해.",
+    "항상 행복하고 건강하길 기도할게.",
+    "사랑해, 햄나~ 💜"
+  ];
+  const englishLines = [
+    "Happy Birthday, Hamna!",
+    "I hope your day is special and bright.",
+    "BTS and I are always cheering for you.",
+    "Wishing you happiness and good health.",
+    "I love you, Hamna~ 💜"
+  ];
 
   function checkDOB() {
     const input = document.getElementById("dobInput").value;
@@ -260,8 +299,20 @@
     document.getElementById("surpriseBtn").onclick = () => {
       document.getElementById("countdownSection").style.display = "none";
       document.getElementById("btsSection").style.display = "block";
+      setTimeout(() => {
+        document.getElementById("btsSection").style.display = "none";
+        document.getElementById("letterSection").style.display = "block";
+        typeLetter(0);
+      }, 6000); // BTS section visible for 6 seconds
     };
   });
+
+  function typeLetter(index) {
+    if (index >= koreanLines.length) return;
+    document.getElementById("koreanLine").innerText = koreanLines[index];
+    document.getElementById("englishLine").innerText = englishLines[index];
+    setTimeout(() => typeLetter(index + 1), 2500);
+  }
 </script>
 
 </body>
