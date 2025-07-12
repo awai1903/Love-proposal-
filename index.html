@@ -169,34 +169,51 @@
       opacity: 1;
     }
 
-    .next-surprise {
-      margin: 40px auto 60px;
-      font-size: 1.4rem;
+    .next-btn {
+      margin: 30px;
+      padding: 12px 26px;
+      font-size: 1.1rem;
+      background: #ffffff22;
+      border: none;
+      border-radius: 10px;
+      color: white;
+      cursor: pointer;
       font-weight: bold;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.1);
-      padding: 15px 30px;
-      border-radius: 12px;
-      width: fit-content;
-      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+      box-shadow: 0 0 10px rgba(255,255,255,0.3);
+      transition: all 0.3s ease;
     }
 
-    #letterSection {
+    .next-btn:hover {
+      background: #ff69b4;
+    }
+
+    #taeLetter {
       display: none;
-      padding: 60px 30px;
-      max-width: 800px;
-      margin: 0 auto;
+      max-width: 600px;
+      margin: 40px auto;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      border-radius: 20px;
+      color: white;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      box-shadow: 0 0 15px rgba(255,255,255,0.3);
+      text-align: left;
     }
 
-    #koreanLine {
-      font-size: 1.5rem;
+    #taeLetter p {
+      margin-bottom: 15px;
+    }
+
+    #taeLetter .korean {
       font-weight: bold;
-      margin-bottom: 20px;
+      font-size: 1.2rem;
     }
 
-    #englishLine {
+    #taeLetter .english {
       font-style: italic;
-      font-size: 1.2rem;
+      opacity: 0.9;
     }
   </style>
 </head>
@@ -225,32 +242,25 @@
     <div><img src="v.jpg" alt="V" /><div class="wish">From TaeTae: Saranghae, Hamna~ stay magical ✨</div><p>V</p></div>
     <div><img src="jung kook.jpg" alt="Jungkook" /><div class="wish">Golden Maknae says: Let this be your golden day 🐰</div><p>Jungkook</p></div>
   </div>
-  <div class="next-surprise">🎉 Now a special message from Kim Taehyung 🎉</div>
-</div>
 
-<!-- TAEHYUNG LETTER SECTION -->
-<div id="letterSection">
-  <h2>💌 From Kim Taehyung 💌</h2>
-  <div id="koreanLine"></div>
-  <div id="englishLine"></div>
+  <button class="next-btn" onclick="showTaeLetter()">💌 Wanna see Taehyung's letter for you?</button>
+
+  <div id="taeLetter">
+    <p class="korean">생일 축하해요, 함나~ 💜 오늘은 당신만의 특별한 날이에요.</p>
+    <p class="english">Happy Birthday, Hamna~ 💜 Today is your very own special day.</p>
+
+    <p class="korean">당신의 웃음은 세상을 더 빛나게 해요. 항상 자신을 믿고, 빛나는 별처럼 반짝이길 바래요.</p>
+    <p class="english">Your smile lights up the world. Always believe in yourself and keep shining like a star.</p>
+
+    <p class="korean">BTS는 언제나 당신을 응원해요. 사랑해요 💜</p>
+    <p class="english"> BTS will always cheer you on. I love you 💜</p>
+
+    <p style="text-align:right">— 김태형 (V)</p>
+  </div>
 </div>
 
 <script>
   const correctDOB = "2004-08-03";
-  const koreanLines = [
-    "해피 버스데이, 햄나!",
-    "너의 하루가 특별하고 빛나길 바래.",
-    "BTS와 내가 너를 항상 응원해.",
-    "항상 행복하고 건강하길 기도할게.",
-    "사랑해, 햄나~ 💜"
-  ];
-  const englishLines = [
-    "Happy Birthday, Hamna!",
-    "I hope your day is special and bright.",
-    "BTS and I are always cheering for you.",
-    "Wishing you happiness and good health.",
-    "I love you, Hamna~ 💜"
-  ];
 
   function checkDOB() {
     const input = document.getElementById("dobInput").value;
@@ -299,19 +309,13 @@
     document.getElementById("surpriseBtn").onclick = () => {
       document.getElementById("countdownSection").style.display = "none";
       document.getElementById("btsSection").style.display = "block";
-      setTimeout(() => {
-        document.getElementById("btsSection").style.display = "none";
-        document.getElementById("letterSection").style.display = "block";
-        typeLetter(0);
-      }, 6000); // BTS section visible for 6 seconds
     };
   });
 
-  function typeLetter(index) {
-    if (index >= koreanLines.length) return;
-    document.getElementById("koreanLine").innerText = koreanLines[index];
-    document.getElementById("englishLine").innerText = englishLines[index];
-    setTimeout(() => typeLetter(index + 1), 2500);
+  function showTaeLetter() {
+    const letter = document.getElementById("taeLetter");
+    letter.style.display = "block";
+    window.scrollTo({ top: letter.offsetTop, behavior: 'smooth' });
   }
 </script>
 
