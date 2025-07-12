@@ -8,6 +8,9 @@
     body {
       margin: 0;
       font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffc3a0, #ffafbd, #ffb6c1);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
       color: #fff;
       text-align: center;
     }
@@ -18,12 +21,14 @@
       100% { background-position: 0% 50%; }
     }
 
-    #gate, #countdownSection {
+    #gate {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100vh;
-      background: linear-gradient(135deg, #ffc3a0, #ffafbd, #ffb6c1);
-      background-size: 400% 400%;
-      animation: gradientShift 15s ease infinite;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -32,8 +37,6 @@
 
     #gate h2 {
       color: #ff69b4;
-      font-size: 2rem;
-      margin-bottom: 15px;
     }
 
     #gate input, #gate button {
@@ -41,7 +44,7 @@
       font-size: 1rem;
       border-radius: 5px;
       border: none;
-      margin-top: 10px;
+      margin-top: 15px;
       width: 200px;
       text-align: center;
     }
@@ -106,17 +109,12 @@
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
     }
 
-    #surpriseBtn:hover {
-      background: #ff85c1;
-    }
-
     .bts-gallery {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 30px;
       padding: 30px;
-      background: linear-gradient(135deg, #ffb6c1, #ffc3a0);
     }
 
     .bts-gallery div {
@@ -134,13 +132,12 @@
       border-radius: 50%;
       box-shadow: 0 0 12px rgba(255, 105, 180, 0.5);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
-      border: 3px solid transparent;
+      border: 3px solid white;
     }
 
     .bts-gallery img:hover {
       transform: scale(1.08);
       box-shadow: 0 0 30px rgba(255, 20, 147, 0.8);
-      border: 3px solid white;
     }
 
     .bts-gallery p {
@@ -153,7 +150,7 @@
 
     .wish {
       position: absolute;
-      top: 110%;
+      bottom: -60px;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(0, 0, 0, 0.7);
@@ -165,7 +162,7 @@
       opacity: 0;
       transition: opacity 0.4s ease;
       pointer-events: none;
-      z-index: 99;
+      z-index: 10;
     }
 
     .bts-gallery div:hover .wish {
@@ -173,17 +170,15 @@
     }
 
     .next-surprise {
-      margin-top: 40px;
-      padding: 20px;
-      background: rgba(255, 255, 255, 0.2);
-      backdrop-filter: blur(6px);
-      border-radius: 16px;
-      font-size: 1.2rem;
-      max-width: 400px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 40px auto 60px;
+      font-size: 1.4rem;
+      font-weight: bold;
       color: #fff;
-      box-shadow: 0 0 20px rgba(255,255,255,0.3);
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px 30px;
+      border-radius: 12px;
+      width: fit-content;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
     }
   </style>
 </head>
@@ -212,9 +207,7 @@
     <div><img src="v.jpg" alt="V" /><div class="wish">From TaeTae: Saranghae, Hamna~ stay magical ✨</div><p>V</p></div>
     <div><img src="jung kook.jpg" alt="Jungkook" /><div class="wish">Golden Maknae says: Let this be your golden day 🐰</div><p>Jungkook</p></div>
   </div>
-  <div class="next-surprise">
-    🎊 Wait for the next surprise! Another magical moment is coming soon...
-  </div>
+  <div class="next-surprise">🎉 More Surprises Loading... Stay Tuned, Hamna! 🎉</div>
 </div>
 
 <script>
@@ -224,18 +217,11 @@
     const input = document.getElementById("dobInput").value;
     if (input === correctDOB) {
       document.getElementById("gate").style.display = "none";
-      document.getElementById("countdownSection").style.display = "flex";
+      document.getElementById("countdownSection").style.display = "block";
     } else {
       window.location.href = "https://www.google.com";
     }
   }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("surpriseBtn").onclick = () => {
-      document.getElementById("countdownSection").style.display = "none";
-      document.getElementById("btsSection").style.display = "block";
-    };
-  });
 
   const targetDate = new Date("2025-08-03T00:00:00");
 
@@ -269,6 +255,14 @@
   }
 
   setInterval(updateCountdown, 1000);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("surpriseBtn").onclick = () => {
+      document.getElementById("countdownSection").style.display = "none";
+      document.getElementById("btsSection").style.display = "block";
+    };
+  });
 </script>
+
 </body>
 </html>
