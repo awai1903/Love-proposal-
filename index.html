@@ -36,11 +36,7 @@
     }
 
     #gate h2 {
-      font-size: 2rem;
-      background: linear-gradient(90deg, #ff85c1, #ffa8dc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 12px rgba(255, 192, 203, 0.5);
+      color: #ff69b4;
     }
 
     #gate input, #gate button {
@@ -57,8 +53,6 @@
       background: #ff69b4;
       color: white;
       cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 0 12px rgba(255, 105, 180, 0.6);
     }
 
     h1 {
@@ -113,11 +107,6 @@
       cursor: pointer;
       font-weight: bold;
       box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
-      transition: background 0.3s ease;
-    }
-
-    #surpriseBtn:hover {
-      background: #ff85c1;
     }
 
     .bts-gallery {
@@ -143,13 +132,12 @@
       border-radius: 50%;
       box-shadow: 0 0 12px rgba(255, 105, 180, 0.5);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
-      border: 3px solid transparent;
+      border: 3px solid white;
     }
 
     .bts-gallery img:hover {
       transform: scale(1.08);
       box-shadow: 0 0 30px rgba(255, 20, 147, 0.8);
-      border: 3px solid white;
     }
 
     .bts-gallery p {
@@ -162,7 +150,7 @@
 
     .wish {
       position: absolute;
-      bottom: 110%;
+      bottom: -60px;
       left: 50%;
       transform: translateX(-50%);
       background: rgba(0, 0, 0, 0.7);
@@ -174,39 +162,53 @@
       opacity: 0;
       transition: opacity 0.4s ease;
       pointer-events: none;
+      z-index: 10;
     }
 
     .bts-gallery div:hover .wish {
       opacity: 1;
     }
+
+    .next-surprise {
+      margin: 40px auto 60px;
+      font-size: 1.4rem;
+      font-weight: bold;
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px 30px;
+      border-radius: 12px;
+      width: fit-content;
+      box-shadow: 0 0 20px rgba(255,255,255,0.2);
+    }
   </style>
 </head>
 <body>
 
-  <div id="gate">
-    <h2>🎀 Enter Your Date of Birth</h2>
-    <input type="date" id="dobInput" max="2025-08-03" />
-    <button onclick="checkDOB()">Continue</button>
-  </div>
+<div id="gate">
+  <h2>🎀 Enter Your Date of Birth</h2>
+  <input type="date" id="dobInput" max="2025-08-03" />
+  <button onclick="checkDOB()">Continue</button>
+</div>
 
-  <div id="countdownSection" style="display:none">
-    <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
-    <div class="circle-container" id="circleContainer"></div>
-    <button id="surpriseBtn">💝 Click Here for the Surprise 💝</button>
-  </div>
+<div id="countdownSection" style="display:none">
+  <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
+  <div class="circle-container" id="circleContainer"></div>
+  <button id="surpriseBtn">💝 Click Here for the Surprise 💝</button>
+</div>
 
-  <div id="btsSection" style="display:none">
-    <h2>💜 Your BTS Angels Wishing Hamna!</h2>
-    <div class="bts-gallery">
-      <div><img src="jin.jpg" /><div class="wish">Hamna-ssi~ I hope you smile today more than ever! 💫</div><p>Jin</p></div>
-      <div><img src="suga.jpg" /><div class="wish">Birthday is just a start... let the beat drop in your favor! 🔥</div><p>Suga</p></div>
-      <div><img src="j hope.jpg" /><div class="wish">Hamna, sunshine like me wishes you endless light ☀️</div><p>J-Hope</p></div>
-      <div><img src="rm.jpg" /><div class="wish">To the brilliant mind — may your year be poetic 📚</div><p>RM</p></div>
-      <div><img src="jimin.jpg" /><div class="wish">You deserve all the love in the universe today 💗</div><p>Jimin</p></div>
-      <div><img src="v.jpg" /><div class="wish">From TaeTae: Saranghae, Hamna~ stay magical ✨</div><p>V</p></div>
-      <div><img src="jung kook.jpg" /><div class="wish">Golden Maknae says: Let this be your golden day 🐰</div><p>Jungkook</p></div>
-    </div>
+<div id="btsSection" style="display:none">
+  <h2>💜 Your BTS Angels Wishing Hamna!</h2>
+  <div class="bts-gallery">
+    <div><img src="jin.jpg" alt="Jin" /><div class="wish">Hamna-ssi~ I hope you smile today more than ever! 💫</div><p>Jin</p></div>
+    <div><img src="suga.jpg" alt="Suga" /><div class="wish">Birthday is just a start... let the beat drop in your favor! 🔥</div><p>Suga</p></div>
+    <div><img src="j hope.jpg" alt="J-Hope" /><div class="wish">Hamna, sunshine like me wishes you endless light ☀️</div><p>J-Hope</p></div>
+    <div><img src="rm.jpg" alt="RM" /><div class="wish">To the brilliant mind — may your year be poetic 📚</div><p>RM</p></div>
+    <div><img src="jimin.jpg" alt="Jimin" /><div class="wish">You deserve all the love in the universe today 💗</div><p>Jimin</p></div>
+    <div><img src="v.jpg" alt="V" /><div class="wish">From TaeTae: Saranghae, Hamna~ stay magical ✨</div><p>V</p></div>
+    <div><img src="jung kook.jpg" alt="Jungkook" /><div class="wish">Golden Maknae says: Let this be your golden day 🐰</div><p>Jungkook</p></div>
   </div>
+  <div class="next-surprise">🎉 More Surprises Loading... Stay Tuned, Hamna! 🎉</div>
+</div>
 
 <script>
   const correctDOB = "2004-08-03";
@@ -220,11 +222,6 @@
       window.location.href = "https://www.google.com";
     }
   }
-
-  document.getElementById("surpriseBtn").onclick = () => {
-    document.getElementById("countdownSection").style.display = "none";
-    document.getElementById("btsSection").style.display = "block";
-  };
 
   const targetDate = new Date("2025-08-03T00:00:00");
 
@@ -258,6 +255,13 @@
   }
 
   setInterval(updateCountdown, 1000);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("surpriseBtn").onclick = () => {
+      document.getElementById("countdownSection").style.display = "none";
+      document.getElementById("btsSection").style.display = "block";
+    };
+  });
 </script>
 
 </body>
