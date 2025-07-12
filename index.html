@@ -321,3 +321,84 @@
 
 </body>
 </html>
+
+<script>
+  const correctDOB = "2004-08-03";
+
+  function checkDOB() {
+    const input = document.getElementById("dobInput").value;
+    if (input === correctDOB) {
+      document.getElementById("gate").style.display = "none";
+      document.getElementById("countdownSection").style.display = "block";
+      handleSurpriseButton(); // Check if button should be enabled
+    } else {
+      window.location.href = "https://www.google.com";
+    }
+  }
+
+  const targetDate = new Date("2025-08-03T00:00:00");
+
+  function updateCountdown() {
+    const now = new Date();
+    const timeDiff = targetDate - now;
+    const container = document.getElementById("circleContainer");
+    if (!container) return;
+    container.innerHTML = "";
+
+    const seconds = Math.floor(timeDiff / 1000) % 60;
+    const minutes = Math.floor(timeDiff / (1000 * 60)) % 60;
+    const hours = Math.floor(timeDiff / (1000 * 60 * 60)) % 24;
+    const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24)) % 30;
+    const months = Math.floor(timeDiff / (1000 * 60 * 60 * 24 * 30.44)) % 12;
+
+    const data = [
+      { label: "Months", value: months },
+      { label: "Days", value: days },
+      { label: "Hours", value: hours },
+      { label: "Minutes", value: minutes },
+      { label: "Seconds", value: seconds }
+    ];
+
+    data.forEach(item => {
+      const div = document.createElement("div");
+      div.className = "circle";
+      div.innerHTML = `<div>${item.value}</div><div>${item.label}</div>`;
+      container.appendChild(div);
+    });
+
+    handleSurpriseButton();
+  }
+
+  function handleSurpriseButton() {
+    const now = new Date();
+    const surpriseBtn = document.getElementById("surpriseBtn");
+    const isBirthday = now.toISOString().split("T")[0] === "2025-08-03";
+
+    if (isBirthday) {
+      surpriseBtn.disabled = false;
+      surpriseBtn.style.opacity = "1";
+      surpriseBtn.style.cursor = "pointer";
+    } else {
+      surpriseBtn.disabled = true;
+      surpriseBtn.style.opacity = "0.5";
+      surpriseBtn.style.cursor = "not-allowed";
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    document.getElementById("surpriseBtn").onclick = () => {
+      if (document.getElementById("surpriseBtn").disabled) return;
+      document.getElementById("countdownSection").style.display = "none";
+      document.getElementById("btsSection").style.display = "block";
+    };
+  });
+
+  function showTaeLetter() {
+    const letter = document.getElementById("taeLetter");
+    letter.style.display = "block";
+    window.scrollTo({ top: letter.offsetTop, behavior: 'smooth' });
+  }
+</script>
+
