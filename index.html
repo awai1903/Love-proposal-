@@ -5,7 +5,11 @@
   <title>Happy Birthday Hamna 🎉</title>
   <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
     html, body {
       font-family: 'Poppins', sans-serif;
       scroll-behavior: smooth;
@@ -20,36 +24,46 @@
       justify-content: center;
       text-align: center;
       padding: 40px 20px;
-    }/* Page 1 - Welcome Album Style */
+      position: relative;
+      animation: fadeSlide 1s ease-in;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(50px); }
+      to { opacity: 1; transform: translateY(0); }
+    }/* Page 1 */
 .page1 {
   background: radial-gradient(circle, #ffd6e8 0%, #ffe3ee 100%);
   color: #880e4f;
-  position: relative;
+  animation: bgPulse 5s infinite alternate;
+}
+@keyframes bgPulse {
+  0% { background-color: #ffe3ee; }
+  100% { background-color: #ffd6e8; }
 }
 .page1 h1 {
   font-family: 'Sacramento', cursive;
   font-size: 4.5rem;
   text-shadow: 2px 2px 10px white;
+  animation: floatText 3s ease-in-out infinite;
 }
-.page1 h2 {
-  margin-top: 10px;
-  font-size: 1.4rem;
+@keyframes floatText {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 .flipbook {
   margin-top: 30px;
   width: 300px;
   height: 400px;
   background: url('https://i.imgur.com/kT3KgZQ.png') center center/cover no-repeat;
-  animation: pulse 2s infinite;
+  animation: rotateGlow 6s infinite linear;
   border-radius: 20px;
 }
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.02); }
-  100% { transform: scale(1); }
+@keyframes rotateGlow {
+  0% { transform: rotate(0deg); box-shadow: 0 0 10px #fff; }
+  100% { transform: rotate(360deg); box-shadow: 0 0 30px #f48fb1; }
 }
 
-/* Page 2 - Countdown */
+/* Page 2 */
 .page2 {
   background: linear-gradient(120deg, #f3e5f5, #fce4ec);
   color: #6a1b9a;
@@ -58,9 +72,15 @@
   font-size: 2rem;
   margin-top: 20px;
   font-weight: 600;
+  animation: flicker 2s infinite;
+}
+@keyframes flicker {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; }
+  100% { opacity: 1; }
 }
 
-/* Page 3 - BTS Gallery */
+/* Page 3 */
 .page3 {
   background: #fff0f5;
   display: flex;
@@ -70,11 +90,26 @@
 }
 .member {
   width: 100px;
-  cursor: pointer;
-  transition: transform 0.3s;
+  height: 100px;
+  background: #f8bbd0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #ff4081;
+  transition: transform 0.3s, background 0.4s;
+  animation: floatMember 4s infinite ease-in-out;
 }
 .member:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
+  background: #ec407a;
+  color: white;
+}
+@keyframes floatMember {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
 }
 .message {
   width: 100%;
@@ -82,9 +117,14 @@
   font-size: 1.2rem;
   color: #9c27b0;
   min-height: 60px;
+  animation: fadeIn 1s ease-in-out;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Page 4 - Taehyung Letter */
+/* Page 4 */
 .page4 {
   background: #fff8f0;
   padding: 60px 20px;
@@ -97,7 +137,7 @@
   font-size: 1.2rem;
   color: #4e342e;
   white-space: pre-line;
-  animation: typing 4s steps(60, end) forwards;
+  animation: typing 5s steps(60, end) forwards;
   overflow: hidden;
   width: 80%;
   max-width: 700px;
@@ -107,7 +147,7 @@
   to { width: 100%; }
 }
 
-/* Page 5 - Final Surprise */
+/* Page 5 */
 .page5 {
   background: linear-gradient(to top right, #ffd6e8, #ffe3ee);
   color: #4a148c;
@@ -129,10 +169,11 @@ button {
   border-radius: 12px;
   margin-top: 20px;
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.3s, background 0.3s;
 }
 button:hover {
   background-color: #9c27b0;
+  transform: scale(1.1);
 }
 
   </style>
@@ -174,7 +215,6 @@ I'm always on your side.
   <p class="magic-text">Close your eyes... and make a wish 🎇</p>
   <button onclick="alert('✨ Surprise downloading... Check your heart 💜')">Download Taehyung Poster</button>
 </section><script>
-  // Countdown Timer
   const countdown = document.getElementById("countdown");
   const targetDate = new Date("August 3, 2025 00:00:00").getTime();
   setInterval(() => {
