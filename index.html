@@ -2,237 +2,160 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday Hamna 🎉</title>
+  <title>Hamna's Birthday Surprise</title>
   <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html, body {
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
       font-family: 'Poppins', sans-serif;
-      scroll-behavior: smooth;
-      overflow-x: hidden;
+      background: #ffeef8;
+      overflow: hidden;
     }
-    section {
+    .scene {
       height: 100vh;
       width: 100vw;
-      display: flex;
+      display: none;
       flex-direction: column;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       text-align: center;
-      padding: 40px 20px;
-      position: relative;
-      animation: fadeSlide 1s ease-in;
+      padding: 40px;
+      animation: fadeIn 1s ease forwards;
     }
-    @keyframes fadeSlide {
-      from { opacity: 0; transform: translateY(50px); }
-      to { opacity: 1; transform: translateY(0); }
-    }/* Page 1 */
-.page1 {
-  background: radial-gradient(circle, #ffd6e8 0%, #ffe3ee 100%);
-  color: #880e4f;
-  animation: bgPulse 5s infinite alternate;
-}
-@keyframes bgPulse {
-  0% { background-color: #ffe3ee; }
-  100% { background-color: #ffd6e8; }
-}
-.page1 h1 {
-  font-family: 'Sacramento', cursive;
-  font-size: 4.5rem;
-  text-shadow: 2px 2px 10px white;
-  animation: floatText 3s ease-in-out infinite;
-}
-@keyframes floatText {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-}
-.flipbook {
-  margin-top: 30px;
-  width: 300px;
-  height: 400px;
-  background: url('https://i.imgur.com/kT3KgZQ.png') center center/cover no-repeat;
-  animation: rotateGlow 6s infinite linear;
-  border-radius: 20px;
-}
-@keyframes rotateGlow {
-  0% { transform: rotate(0deg); box-shadow: 0 0 10px #fff; }
-  100% { transform: rotate(360deg); box-shadow: 0 0 30px #f48fb1; }
-}
-
-/* Page 2 */
-.page2 {
-  background: linear-gradient(120deg, #f3e5f5, #fce4ec);
-  color: #6a1b9a;
-}
-#countdown {
-  font-size: 2rem;
-  margin-top: 20px;
-  font-weight: 600;
-  animation: flicker 2s infinite;
-}
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
-/* Page 3 */
-.page3 {
-  background: #fff0f5;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-}
-.member {
-  width: 100px;
-  height: 100px;
-  background: #f8bbd0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  border-radius: 50%;
-  box-shadow: 0 0 10px #ff4081;
-  transition: transform 0.3s, background 0.4s;
-  animation: floatMember 4s infinite ease-in-out;
-}
-.member:hover {
-  transform: scale(1.2);
-  background: #ec407a;
-  color: white;
-}
-@keyframes floatMember {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-10px); }
-  100% { transform: translateY(0); }
-}
-.message {
-  width: 100%;
-  margin-top: 20px;
-  font-size: 1.2rem;
-  color: #9c27b0;
-  min-height: 60px;
-  animation: fadeIn 1s ease-in-out;
-}
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Page 4 */
-.page4 {
-  background: #fff8f0;
-  padding: 60px 20px;
-  font-family: 'Poppins';
-}
-.letter-box {
-  background: #fff3e0;
-  padding: 30px;
-  border-left: 5px solid #ffab91;
-  font-size: 1.2rem;
-  color: #4e342e;
-  white-space: pre-line;
-  animation: typing 5s steps(60, end) forwards;
-  overflow: hidden;
-  width: 80%;
-  max-width: 700px;
-}
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-/* Page 5 */
-.page5 {
-  background: linear-gradient(to top right, #ffd6e8, #ffe3ee);
-  color: #4a148c;
-}
-.magic-text {
-  font-size: 2em;
-  animation: sparkle 2s infinite alternate;
-}
-@keyframes sparkle {
-  from { opacity: 0.7; transform: scale(1); }
-  to { opacity: 1; transform: scale(1.05); }
-}
-button {
-  padding: 10px 20px;
-  border: none;
-  background-color: #ba68c8;
-  color: white;
-  font-weight: bold;
-  border-radius: 12px;
-  margin-top: 20px;
-  cursor: pointer;
-  transition: transform 0.3s, background 0.3s;
-}
-button:hover {
-  background-color: #9c27b0;
-  transform: scale(1.1);
-}
-
+    .scene.active { display: flex; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    h1 {
+      font-size: 3rem;
+      font-family: 'Sacramento', cursive;
+      color: #d81b60;
+      margin-bottom: 20px;
+    }
+    h2 { font-size: 1.5rem; color: #880e4f; margin-bottom: 20px; }
+    .next-btn {
+      padding: 12px 24px;
+      background: #ec407a;
+      color: white;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: 0.3s;
+    }
+    .next-btn:hover {
+      background: #c2185b;
+    }
+    .gallery img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 20px;
+      margin: 10px;
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+    .message-box {
+      font-size: 1.2rem;
+      color: #6a1b9a;
+      margin-top: 20px;
+      min-height: 50px;
+      animation: fadeIn 1s ease-in-out;
+    }
+    .letter {
+      white-space: pre-line;
+      padding: 20px;
+      background: #fff3e0;
+      color: #4e342e;
+      border-left: 5px solid #ff7043;
+      max-width: 700px;
+      animation: typing 5s steps(100, end);
+      overflow: hidden;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    .final img {
+      width: 200px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 15px #ff80ab;
+    }
   </style>
 </head>
-<body><!-- Page 1: Welcome --><section class="page1">
-  <h1>Happy Birthday Hamna 💖</h1>
-  <h2>You’re more precious than words can say...</h2>
-  <div class="flipbook"></div>
-</section><!-- Page 2: Countdown --><section class="page2">
-  <h1>Counting Down to Magic...</h1>
-  <div id="countdown">Loading...</div>
-</section><!-- Page 3: BTS Gallery --><section class="page3">
-  <div class="member" onclick="showMessage('RM: Stay brilliant and confident Hamna!')">RM</div>
-  <div class="member" onclick="showMessage('Jin: Worldwide Handsome sends worldwide wishes!')">Jin</div>
-  <div class="member" onclick="showMessage('Suga: You deserve calm and love today 💜')">Suga</div>
-  <div class="member" onclick="showMessage('J-Hope: Sunshine and sparkles for you!')">J-Hope</div>
-  <div class="member" onclick="showMessage('Jimin: You’re soft, kind, and magical 🎈')">Jimin</div>
-  <div class="member" onclick="showMessage('Jungkook: Dream big, dance free 💫')">Jungkook</div>
-  <div class="member" onclick="showMessage('Taehyung: Scroll down... I left something special 💌')">Taehyung (V)</div>
-  <div class="message" id="bts-message"></div>
-</section><!-- Page 4: Taehyung's Letter --><section class="page4">
-  <h1>Taehyung's Letter to You 💌</h1>
-  <div class="letter-box">
-    함나야,
-    너는 언제나 빛나는 별이야. 생일 축하해!
-    널 위해 이 세상에서 제일 아름다운 하루가 되길 바래.
-    항상 네 편이야.— 김태형 (V)
+<body><!-- Background Birthday Music --><audio id="bg-music" autoplay loop hidden>
+  <source src="Happy Birthday Song___(M4A_128K).m4a" type="audio/mp4">
+</audio><!-- Scene 1: Welcome --><div class="scene active" id="scene1">
+  <h1>🎂 Happy Birthday Hamna 🎂</h1>
+  <h2>You're more precious than stardust 💫</h2>
+  <button class="next-btn" onclick="nextScene()">Next Surprise 🎁</button>
+</div><!-- Scene 2: Countdown --><div class="scene" id="scene2">
+  <h1>⏳ Countdown to August 3</h1>
+  <h2 id="countdown">Loading...</h2>
+  <button class="next-btn" onclick="nextScene()">Next Surprise 🎁</button>
+</div><!-- Scene 3: BTS Gallery --><div class="scene" id="scene3">
+  <h1>BTS Members 🎤</h1>
+  <div class="gallery">
+    <img src="v.jpg" onclick="showMsg('Taehyung: Your smile is the reason the world is beautiful 💜')">
+    <img src="rm.jpg" onclick="showMsg('RM: You are powerful and poetic. Happy Birthday!')">
+    <img src="jungkook.jpg" onclick="showMsg('Jungkook: Golden Maknae wishes golden memories 🎈')">
+    <img src="jhope.jpg" onclick="showMsg('J-Hope: Your energy lights up every room 🌞')">
+    <img src="jimin.jpg" onclick="showMsg('Jimin: Your heart is pure magic 💫')">
+    <img src="suga.jpg" onclick="showMsg('Suga: May your dreams sing loud today 🎶')">
+    <img src="jin.jpg" onclick="showMsg('Jin: Handsome wishes from the Worldwide Handsome 😘')">
+  </div>
+  <div class="message-box" id="bts-message"></div>
+  <button class="next-btn" onclick="nextScene()">Taehyung’s Letter 💌</button>
+</div><!-- Scene 4: Taehyung's Letter --><div class="scene" id="scene4">
+  <h1>💌 From Kim Taehyung</h1>
+  <div class="letter">
+함나야,
+너는 언제나 빛나는 별이야. 생일 축하해!
+널 위해 이 세상에서 제일 아름다운 하루가 되길 바래.
+항상 네 편이야.— 김태형 (V)
 
-Hamna,
-You are a shining star. Happy Birthday!
-May your day be the most beautiful in the world.
-I'm always on your side.
+Hamna, You are a shining star. Happy Birthday! May your day be the most beautiful in the world. I'm always on your side.
 
 — Kim Taehyung (V)
 
   </div>
-</section><!-- Page 5: Final Surprise --><section class="page5">
-  <h1>🎁 Final Surprise 🎁</h1>
-  <p class="magic-text">Close your eyes... and make a wish 🎇</p>
-  <button onclick="alert('✨ Surprise downloading... Check your heart 💜')">Download Taehyung Poster</button>
-</section><script>
-  const countdown = document.getElementById("countdown");
-  const targetDate = new Date("August 3, 2025 00:00:00").getTime();
+  <button class="next-btn" onclick="nextScene()">Final Surprise 🎆</button>
+</div><!-- Scene 5: Final Surprise --><div class="scene final" id="scene5">
+  <h1>🎉 Your Final Surprise 🎉</h1>
+  <img src="v.jpg" alt="Taehyung Selfie">
+  <h2>Download Your Keepsake Below</h2>
+  <a href="v.jpg" download><button class="next-btn">Download Poster 💖</button></a>
+</div><script>
+  let current = 1;
+  function nextScene() {
+    document.getElementById(`scene${current}`).classList.remove('active');
+    current++;
+    const next = document.getElementById(`scene${current}`);
+    if(next) next.classList.add('active');
+  }
+
+  function showMsg(msg) {
+    document.getElementById('bts-message').innerText = msg;
+  }
+
+  // Countdown Logic
+  const countdownEl = document.getElementById("countdown");
+  const target = new Date("August 3, 2025 00:00:00").getTime();
   setInterval(() => {
     const now = new Date().getTime();
-    const diff = targetDate - now;
-    if (diff < 0) {
-      countdown.innerText = "🎉 It's your birthday, Hamna! 🎉";
-      return;
-    }
-    const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-    const s = Math.floor((diff % (1000 * 60)) / 1000);
-    countdown.innerText = `${d}d ${h}h ${m}m ${s}s`;
+    const gap = target - now;
+    if(gap < 0) return countdownEl.innerText = "🎉 It's your birthday, Hamna! 🎉";
+    const d = Math.floor(gap / (1000*60*60*24));
+    const h = Math.floor((gap % (1000*60*60*24)) / (1000*60*60));
+    const m = Math.floor((gap % (1000*60*60)) / (1000*60));
+    const s = Math.floor((gap % (1000*60)) / 1000);
+    countdownEl.innerText = `${d}d ${h}h ${m}m ${s}s`;
   }, 1000);
-
-  function showMessage(msg) {
-    document.getElementById("bts-message").innerText = msg;
-  }
 </script></body>
 </html>
