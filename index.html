@@ -8,7 +8,7 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #ffeef8;
+      background: linear-gradient(to right, #ffeef8, #fff1f5);
       overflow: hidden;
     }
     .scene {
@@ -28,25 +28,34 @@
       to { opacity: 1; transform: scale(1); }
     }
     h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-family: 'Sacramento', cursive;
       color: #d81b60;
       margin-bottom: 20px;
+      text-shadow: 2px 2px #ffcdd2;
     }
-    h2 { font-size: 1.5rem; color: #880e4f; margin-bottom: 20px; }
+    h2 { font-size: 1.7rem; color: #880e4f; margin-bottom: 20px; }
     .next-btn {
-      padding: 12px 24px;
-      background: #ec407a;
+      padding: 14px 28px;
+      background: linear-gradient(45deg, #ec407a, #f06292);
       color: white;
       border: none;
       border-radius: 30px;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
       margin-top: 30px;
-      transition: 0.3s;
+      transition: transform 0.3s ease, background 0.4s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
     .next-btn:hover {
-      background: #c2185b;
+      background: linear-gradient(45deg, #c2185b, #d81b60);
+      transform: scale(1.05);
+    }
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
     }
     .gallery img {
       width: 120px;
@@ -56,63 +65,70 @@
       margin: 10px;
       transition: transform 0.3s;
       cursor: pointer;
+      box-shadow: 0 0 15px #f48fb1;
     }
     .gallery img:hover {
       transform: scale(1.1);
+      box-shadow: 0 0 25px #f06292;
     }
     .message-box {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       color: #6a1b9a;
-      margin-top: 20px;
-      min-height: 50px;
-      animation: fadeIn 1s ease-in-out;
+      margin-top: 30px;
+      min-height: 60px;
+      padding: 10px;
+      background: #f3e5f5;
+      border-radius: 12px;
+      animation: fadeIn 0.8s ease-in-out;
     }
     .letter {
       white-space: pre-line;
-      padding: 20px;
+      padding: 25px;
       background: #fff3e0;
       color: #4e342e;
       border-left: 5px solid #ff7043;
       max-width: 700px;
       animation: typing 5s steps(100, end);
       overflow: hidden;
+      border-radius: 10px;
+      font-size: 1.1rem;
     }
     @keyframes typing {
       from { width: 0; }
       to { width: 100%; }
     }
     .final img {
-      width: 200px;
+      width: 220px;
       border-radius: 20px;
       margin-bottom: 20px;
       box-shadow: 0 0 15px #ff80ab;
     }
   </style>
 </head>
-<body><!-- Background Birthday Music --><audio id="bg-music" autoplay loop hidden>
+<body><audio id="bg-music" autoplay loop hidden>
   <source src="Happy Birthday Song___(M4A_128K).m4a" type="audio/mp4">
-</audio><!-- Scene 1: Welcome --><div class="scene active" id="scene1">
+</audio><div class="scene active" id="scene1">
   <h1>🎂 Happy Birthday Hamna 🎂</h1>
   <h2>You're more precious than stardust 💫</h2>
   <button class="next-btn" onclick="nextScene()">Next Surprise 🎁</button>
-</div><!-- Scene 2: Countdown --><div class="scene" id="scene2">
+</div><div class="scene" id="scene2">
   <h1>⏳ Countdown to August 3</h1>
   <h2 id="countdown">Loading...</h2>
   <button class="next-btn" onclick="nextScene()">Next Surprise 🎁</button>
-</div><!-- Scene 3: BTS Gallery --><div class="scene" id="scene3">
+</div><div class="scene" id="scene3">
   <h1>BTS Members 🎤</h1>
   <div class="gallery">
-    <img src="v.jpg" onclick="showMsg('Taehyung: Your smile is the reason the world is beautiful 💜')">
-    <img src="rm.jpg" onclick="showMsg('RM: You are powerful and poetic. Happy Birthday!')">
-    <img src="jung kook.jpg" onclick="showMsg('Jungkook: Golden Maknae wishes golden memories 🎈')">
-    <img src="j hope.jpg" onclick="showMsg('J-Hope: Your energy lights up every room 🌞')">
-    <img src="jimin.jpg" onclick="showMsg('Jimin: Your heart is pure magic 💫')">
-    <img src="suga.jpg" onclick="showMsg('Suga: May your dreams sing loud today 🎶')">
-    <img src="jin.jpg" onclick="showMsg('Jin: Handsome wishes from the Worldwide Handsome 😘')">
+    <img src="v.jpg" alt="Taehyung" onclick="showMsg('Taehyung: Your smile is the reason the world is beautiful 💜')">
+    <img src="rm.jpg" alt="RM" onclick="showMsg('RM: You are powerful and poetic. Happy Birthday!')">
+    <img src="jungkook.jpg" alt="Jung Kook" onclick="showMsg('Jung Kook: Golden Maknae wishes golden memories 🎈')">
+    <img src="jhope.jpg" alt="J-Hope" onclick="showMsg('J-Hope: Your energy lights up every room 🌞')">
+    <img src="jimin.jpg" alt="Jimin" onclick="showMsg('Jimin: Your heart is pure magic 💫')">
+    <img src="suga.jpg" alt="Suga" onclick="showMsg('Suga: May your dreams sing loud today 🎶')">
+    <img src="jin.jpg" alt="Jin" onclick="showMsg('Jin: Handsome wishes from the Worldwide Handsome 😘')">
   </div>
   <div class="message-box" id="bts-message"></div>
   <button class="next-btn" onclick="nextScene()">Taehyung’s Letter 💌</button>
-</div><!-- Scene 4: Taehyung's Letter --><div class="scene" id="scene4">
+</div><div class="scene" id="scene4">
   <h1>💌 From Kim Taehyung</h1>
   <div class="letter">
 함나야,
@@ -126,7 +142,7 @@ Hamna, You are a shining star. Happy Birthday! May your day be the most beautifu
 
   </div>
   <button class="next-btn" onclick="nextScene()">Final Surprise 🎆</button>
-</div><!-- Scene 5: Final Surprise --><div class="scene final" id="scene5">
+</div><div class="scene final" id="scene5">
   <h1>🎉 Your Final Surprise 🎉</h1>
   <img src="v.jpg" alt="Taehyung Selfie">
   <h2>Download Your Keepsake Below</h2>
@@ -144,7 +160,6 @@ Hamna, You are a shining star. Happy Birthday! May your day be the most beautifu
     document.getElementById('bts-message').innerText = msg;
   }
 
-  // Countdown Logic
   const countdownEl = document.getElementById("countdown");
   const target = new Date("August 3, 2025 00:00:00").getTime();
   setInterval(() => {
