@@ -1,167 +1,164 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>🎂 Welcome Hamna!</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Hamna</title>
+  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
   <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(to bottom right, #ffc3a0, #ffafbd);
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      scroll-behavior: smooth;
       font-family: 'Poppins', sans-serif;
-      color: #fff;
-      text-align: center;
       overflow-x: hidden;
     }
-
     section {
       height: 100vh;
+      width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      padding: 40px 20px;
     }
-
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 10px;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    .page1 {
+      background: linear-gradient(135deg, #f8bbd0, #fce4ec);
+      color: #880e4f;
     }
-
-    p {
-      font-size: 1.2rem;
-      margin-top: 0;
-      max-width: 80%;
+    .page1 h1 {
+      font-family: 'Sacramento', cursive;
+      font-size: 5em;
+      text-shadow: 2px 2px 10px white;
     }
-
-    #openAlbumBtn {
-      margin-top: 30px;
-      padding: 12px 24px;
-      font-size: 1.1rem;
-      background: #ff66a3;
+    .page1 h2 {
+      margin-top: 10px;
+      font-size: 1.5em;
+    }
+    .page2 {
+      background: linear-gradient(135deg, #ba68c8, #f3e5f5);
       color: white;
-      border: none;
-      border-radius: 10px;
-      font-weight: bold;
-      box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
-      cursor: pointer;
     }
-
-    .flipbook {
-      margin-top: 30px;
-      width: 380px;
-      height: 380px;
-      position: relative;
-      border: 6px solid white;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 0 25px rgba(255, 105, 180, 0.4);
-      display: none;
-    }
-
-    .flipbook img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .nav-buttons {
-      display: none;
+    #countdown {
+      font-size: 2.5em;
       margin-top: 20px;
+      font-weight: bold;
+    }
+    .page3 {
+      background: #fce4ec;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
       gap: 20px;
+      padding-top: 60px;
     }
-
-    .nav-buttons button {
+    .member {
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .member:hover {
+      transform: scale(1.05);
+    }
+    .message {
+      display: none;
+      grid-column: span 3;
+      margin-top: 20px;
+      font-size: 1.2em;
+      color: #6a1b9a;
+    }
+    .page4 {
+      background: #fff3e0;
+      font-family: 'Poppins';
+      padding-top: 60px;
+    }
+    #tae-letter {
+      font-family: 'Sacramento', cursive;
+      font-size: 2em;
+      color: #4e342e;
+      white-space: pre-wrap;
+      border-left: 3px solid #ffab91;
+      padding-left: 20px;
+      animation: typing 6s steps(40) 1 normal both;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    .page5 {
+      background: linear-gradient(to bottom right, #ffd6e8, #ffe3ee);
+      color: #4a148c;
+    }
+    .magic-text {
+      font-size: 2em;
+      animation: sparkle 2s infinite alternate;
+    }
+    @keyframes sparkle {
+      from { opacity: 0.6; transform: scale(1); }
+      to { opacity: 1; transform: scale(1.05); }
+    }
+    button {
       padding: 10px 20px;
-      font-size: 1rem;
       border: none;
+      background-color: #ba68c8;
+      color: white;
+      font-weight: bold;
       border-radius: 10px;
-      background: #ff66a3;
-      color: white;
+      margin-top: 20px;
       cursor: pointer;
-      font-weight: bold;
-      box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
-    }
-
-    #nextPageBtn {
-      margin-top: 50px;
-      padding: 14px 30px;
-      font-size: 1.2rem;
-      background: #ffffff33;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      font-weight: bold;
-      cursor: pointer;
-      box-shadow: 0 0 18px rgba(255,255,255,0.3);
     }
   </style>
 </head>
-<body>
+<body>  <!-- Page 1: Welcome -->  <section class="page1">
+    <h1>Happy Birthday Hamna 🎂</h1>
+    <h2>Your day just got a lot more magical 💜</h2>
+  </section>  <!-- Page 2: Countdown -->  <section class="page2">
+    <h1>Countdown to Your Special Day 🎉</h1>
+    <div id="countdown">Loading...</div>
+  </section>  <!-- Page 3: BTS Gallery -->  <section class="page3">
+    <div class="member" onclick="showMessage('Happy Birthday from RM! Stay smart & kind.')"><img src="https://via.placeholder.com/150" alt="RM"><p>RM</p></div>
+    <div class="member" onclick="showMessage('Suga sends love & music your way!')"><img src="https://via.placeholder.com/150" alt="Suga"><p>Suga</p></div>
+    <div class="member" onclick="showMessage('Jin says: Eat well, laugh more!')"><img src="https://via.placeholder.com/150" alt="Jin"><p>Jin</p></div>
+    <div class="member" onclick="showMessage('J-Hope: Smile Hamna, the sun is shining for you!')"><img src="https://via.placeholder.com/150" alt="J-Hope"><p>J-Hope</p></div>
+    <div class="member" onclick="showMessage('Jimin: You are precious and perfect 💖')"><img src="https://via.placeholder.com/150" alt="Jimin"><p>Jimin</p></div>
+    <div class="member" onclick="showMessage('Jungkook wishes you courage & dreams!')"><img src="https://via.placeholder.com/150" alt="Jungkook"><p>Jungkook</p></div>
+    <div class="member" onclick="showMessage('Taehyung has something special for you below ↓')"><img src="https://via.placeholder.com/150" alt="V"><p>Taehyung (V)</p></div>
+    <div class="message" id="bts-message"></div>
+  </section>  <!-- Page 4: Letter from Taehyung -->  <section class="page4">
+    <h1>Taehyung's Letter to You 💌</h1>
+    <p id="tae-letter">함나야,
+너는 언제나 빛나는 별이야. 생일 축하해!
+널 위해 이 세상에서 제일 아름다운 하루가 되길 바래.
+항상 네 편이야.— 김태형 (V)
 
-<section id="welcomeSection">
-  <h1>🎉 Welcome Hamna! 🎉</h1>
-  <p>Get ready for a magical birthday surprise full of memories, love, and sparkles ✨</p>
-  
-  <!-- Open Album Button -->
-  <button id="openAlbumBtn" onclick="openAlbum()">📖 Open Your Album</button>
+Hamna, You are a shining star. Happy Birthday! May your day be the most beautiful in the world. I'm always on your side.
 
-  <!-- Flipbook -->
-  <div class="flipbook" id="flipbook">
-    <img id="albumImage" src="jin.jpg" alt="Flipbook Image">
-  </div>
+— Kim Taehyung (V)</p>
 
-  <!-- Prev/Next Buttons -->
-  <div class="nav-buttons" id="navButtons">
-    <button onclick="prevImage()">⬅️ Prev</button>
-    <button onclick="nextImage()">Next ➡️</button>
-  </div>
+  </section>  <!-- Page 5: Final Surprise -->  <section class="page5">
+    <h1>🎁 Final Surprise 🎁</h1>
+    <p class="magic-text">Close your eyes... and make a wish 🎇</p>
+    <button onclick="alert('Downloading Taehyung's selfie surprise!')">Download Surprise</button>
+  </section>  <script>
+    // Countdown Timer
+    const countdown = document.getElementById("countdown");
+    const targetDate = new Date("August 3, 2025 00:00:00").getTime();
+    setInterval(() => {
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      if (diff < 0) {
+        countdown.innerText = "🎉 It's your birthday, Hamna! 🎉";
+        return;
+      }
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+      countdown.innerText = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
 
-  <!-- Next Surprise Button -->
-  <button id="nextPageBtn" onclick="goToNextPage()">🎁 Next Surprise</button>
-</section>
-
-<!-- Next Surprise Section Placeholder -->
-<section id="btsSection" style="display:none;">
-  <h1>🎤 Your BTS Angels Are Here!</h1>
-  <p>Next section content coming soon...</p>
-</section>
-
-<script>
-  const images = [
-    "jin.jpg",
-    "suga.jpg",
-    "j hope.jpg",
-    "rm.jpg",
-    "jimin.jpg",
-    "v.jpg",
-    "jung kook.jpg"
-  ];
-
-  let currentIndex = 0;
-
-  function openAlbum() {
-    document.getElementById('flipbook').style.display = 'block';
-    document.getElementById('navButtons').style.display = 'flex';
-    document.getElementById('openAlbumBtn').style.display = 'none';
-  }
-
-  function nextImage() {
-    currentIndex = (currentIndex + 1) % images.length;
-    document.getElementById("albumImage").src = images[currentIndex];
-  }
-
-  function prevImage() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    document.getElementById("albumImage").src = images[currentIndex];
-  }
-
-  function goToNextPage() {
-    document.getElementById("welcomeSection").style.display = "none";
-    document.getElementById("btsSection").style.display = "flex";
-  }
-</script>
-
-</body>
+    // BTS Message Reveal
+    function showMessage(msg) {
+      document.getElementById("bts-message").innerText = msg;
+      document.getElementById("bts-message").style.display = "block";
+    }
+  </script></body>
 </html>
