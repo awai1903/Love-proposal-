@@ -1,158 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>BTS Surprise Page for Hamna 🎉</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hamna's Birthday Surprise 💜</title>
   <style>
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body, html {
+      height: 100%;
+      overflow: hidden;
       font-family: 'Segoe UI', sans-serif;
     }
-    body {
+
+    .main-section {
       background: url('background.jpg') no-repeat center center/cover;
       height: 100vh;
-      overflow-x: hidden;
-    }
-
-    .container {
-      width: 100%;
-      height: 100vh;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       flex-direction: column;
-      background-color: rgba(0,0,0,0.4);
+      position: relative;
+      text-align: center;
     }
 
-    .video-icon {
-      width: 80px;
-      height: 80px;
-      background: white;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 15px #fff;
-      cursor: pointer;
+    #video-container {
       position: relative;
     }
 
-    .video-icon::before {
-      content: '';
-      border-style: solid;
-      border-width: 15px 0 15px 25px;
-      border-color: transparent transparent transparent #000;
-      margin-left: 5px;
+    #playButton {
+      font-size: 50px;
+      color: white;
+      background: rgba(0,0,0,0.6);
+      padding: 20px 30px;
+      border-radius: 100%;
+      cursor: pointer;
+      border: 3px solid white;
+      z-index: 10;
     }
 
     video {
-      width: 90vw;
-      max-width: 500px;
-      border-radius: 20px;
+      max-width: 90vw;
+      max-height: 70vh;
       display: none;
-      margin-top: 20px;
+      border-radius: 20px;
     }
 
-    .next-button {
-      margin-top: 30px;
-      padding: 12px 24px;
-      background: #ff69b4;
+    #nextBtn {
+      margin-top: 20px;
+      padding: 12px 25px;
+      background: #ff7eb9;
       color: white;
+      font-size: 18px;
       border: none;
       border-radius: 25px;
-      font-size: 18px;
       cursor: pointer;
-      box-shadow: 0 0 10px #ff69b4;
-    }
-
-    .hidden-section {
       display: none;
-      text-align: center;
-      padding: 30px 10px;
     }
 
-    .taehyung-img {
+    .second-section {
+      display: none;
+      height: 100vh;
+      background: url('background.jpg') no-repeat center center/cover;
+      text-align: center;
+      padding-top: 50px;
+      overflow-y: auto;
+    }
+
+    .second-section img {
       width: 200px;
       border-radius: 20px;
-      cursor: pointer;
-      transition: transform 0.3s;
+      transition: transform 0.3s ease;
     }
 
-    .taehyung-img:hover {
+    .second-section img:hover {
       transform: scale(1.05);
     }
 
-    .wish-text {
+    #wishes {
       margin-top: 20px;
-      color: white;
-      font-size: 18px;
-      opacity: 0;
-      transition: opacity 1s ease;
-      max-width: 90%;
-      margin-inline: auto;
+      max-height: 70vh;
+      overflow-y: auto;
+      display: none;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 15px;
     }
 
-    audio {
-      display: none;
+    #wishes p {
+      margin: 10px 0;
+      font-weight: 500;
+      color: #333;
     }
   </style>
 </head>
 <body>
 
-<!-- 🎥 VIDEO SECTION -->
-<div class="container" id="videoSection">
-  <div class="video-icon" onclick="playVideo()"></div>
-  <video id="birthdayVideo" controls>
-    <source src="video.mp4" type="video/mp4" />
-    Your browser does not support the video tag.
-  </video>
-  <button class="next-button" onclick="showSurprise()">Next Surprise 🎁</button>
-</div>
+  <audio id="bgMusic" src="song.m4a" loop></audio>
 
-<!-- 🎶 BACKGROUND MUSIC -->
-<audio id="bgMusic" loop>
-  <source src="song.m4a" type="audio/mp4">
-</audio>
+  <!-- First Section -->
+  <div class="main-section">
+    <div id="video-container">
+      <div id="playButton">▶</div>
+      <video id="bdayVideo" src="video.mp4" controls></video>
+    </div>
+    <button id="nextBtn">Next Surprise 🎉</button>
+  </div>
 
-<!-- 📸 TAEHYUNG SURPRISE -->
-<div class="hidden-section" id="surpriseSection">
-  <img src="taehyung.jpg" alt="Taehyung" class="taehyung-img" onclick="showWishes()">
-  <p class="wish-text" id="wishText">🎉 Happy Birthday Hamna! Taehyung wishes you a magical year full of love, happiness, and BTS magic! 💜</p>
-</div>
+  <!-- Second Section -->
+  <div class="second-section" id="secondSection">
+    <img src="v.jpg" alt="Taehyung" id="taeImage">
+    <div id="wishes">
+      <!-- Wishes will be added by JS -->
+    </div>
+  </div>
 
-<!-- 🔊 OPTIONAL CLICK SOUND -->
-<audio id="clickSound">
-  <source src="click.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-  function playVideo() {
-    const video = document.getElementById('birthdayVideo');
-    video.style.display = 'block';
-    video.volume = 1; // Max volume
-    video.play();
-  }
-
-  function showSurprise() {
-    document.getElementById('videoSection').style.display = 'none';
-    document.getElementById('surpriseSection').style.display = 'block';
-    
-    // Background music starts
+  <script>
+    const playBtn = document.getElementById('playButton');
+    const video = document.getElementById('bdayVideo');
+    const nextBtn = document.getElementById('nextBtn');
     const bgMusic = document.getElementById('bgMusic');
-    bgMusic.volume = 1;
-    bgMusic.play();
-  }
+    const secondSection = document.getElementById('secondSection');
+    const wishesDiv = document.getElementById('wishes');
+    const taeImage = document.getElementById('taeImage');
 
-  function showWishes() {
-    const wishText = document.getElementById('wishText');
-    wishText.style.opacity = 1;
+    playBtn.addEventListener('click', () => {
+      playBtn.style.display = 'none';
+      video.style.display = 'block';
+      video.play();
+      nextBtn.style.display = 'inline-block';
+    });
 
-    // Optional: play click sound
-    const clickSound = document.getElementById('clickSound');
-    if (clickSound) clickSound.play();
-  }
-</script>
+    nextBtn.addEventListener('click', () => {
+      document.querySelector('.main-section').style.display = 'none';
+      secondSection.style.display = 'block';
+      bgMusic.play();
+    });
 
+    taeImage.addEventListener('click', () => {
+      if (wishesDiv.style.display === 'none') {
+        wishesDiv.style.display = 'block';
+        generateWishes();
+      } else {
+        wishesDiv.style.display = 'none';
+        wishesDiv.innerHTML = '';
+      }
+    });
+
+    function generateWishes() {
+      for (let i = 1; i <= 100; i++) {
+        const wish = document.createElement('p');
+        wish.innerText = `🎉 Happy Birthday Hamna! May your ${i}th wish come true today! 💜`;
+        wishesDiv.appendChild(wish);
+      }
+    }
+  </script>
 </body>
 </html>
