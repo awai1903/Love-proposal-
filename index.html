@@ -4,19 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Hamna's 21st Birthday 🎉</title>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
-      font-family: 'Quicksand', sans-serif;
-      background: linear-gradient(to bottom right, #ffc0cb, #ffb6c1);
-      color: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      text-align: center;
+      font-family: 'Poppins', sans-serif;
+      background: url('background.jpg') no-repeat center center fixed;
+    background-size: cover;
+  color: white;
+  text-align: center;
     }
 
     h1 {
@@ -24,28 +20,30 @@
       margin-bottom: 20px;
     }
 
-    .countdown-container {
-      display: flex;
-      gap: 15px;
-      flex-wrap: wrap;
-      justify-content: center;
+   .countdown-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: nowrap; /* So it doesn't wrap into 3+2 layout */
+  margin-top: 50px;
+}
+
     }
 
-     .countdown-item {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%; /* ✅ fully rounded */
-    background: rgba(255, 255, 255, 0.1);
-    padding: 10px;
-    box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
-    backdrop-filter: blur(5px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    animation: blink 1s infinite; /* ✅ blinking every second */
-  }
-
+.countdown-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  animation: blink 1s infinite;
+}
     .countdown-item span {
       display: block;
       font-size: 1.5rem;
@@ -63,14 +61,12 @@
       animation: pulse 2s infinite;
     }
 
-    @keyframes blink {
-      0%, 100% {
-        box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
-      }
-      50% {
-        box-shadow: 0 0 35px rgba(255, 255, 255, 0.7);
-      }
-    }
+   @keyframes blink {
+  0% { box-shadow: 0 0 10px #fff; }
+  50% { box-shadow: 0 0 20px #fff; }
+  100% { box-shadow: 0 0 10px #fff; }
+}
+    
 
     @keyframes pulse {
       0% { background-color: rgba(255,255,255,0.2); }
