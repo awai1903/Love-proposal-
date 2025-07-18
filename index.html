@@ -1,176 +1,163 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hamna's Birthday Surprise</title>
-  <link href="https://fonts.googleapis.com/css2?family=Sacramento&family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Hamna 🎂</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
+      background: url('https://i.pinimg.com/originals/8a/33/0a/8a330a78c74dcd836b88c175a3dd2d62.gif') center/cover no-repeat;
       font-family: 'Poppins', sans-serif;
-      background: linear-gradient(to right, #ffeef8, #fff1f5);
       overflow: hidden;
     }
-    .scene {
-      height: 100vh;
-      width: 100vw;
-      display: none;
+
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      z-index: 1;
+    }
+
+    .petals {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.ibb.co/G2qvnmH/petals.gif') center/cover no-repeat;
+      opacity: 0.6;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .container {
+      position: relative;
+      z-index: 3;
+      display: flex;
       flex-direction: column;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      height: 100vh;
       text-align: center;
-      padding: 40px;
-      animation: fadeIn 1s ease forwards;
+      color: white;
+      padding: 20px;
     }
-    .scene.active { display: flex; }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
+
     h1 {
-      font-size: 3.5rem;
-      font-family: 'Sacramento', cursive;
-      color: #d81b60;
-      margin-bottom: 20px;
-      text-shadow: 2px 2px #ffcdd2;
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      color: #ffc9e2;
+      text-shadow: 0 0 10px #fff;
+      animation: blink 2s infinite;
     }
-    h2 { font-size: 1.7rem; color: #880e4f; margin-bottom: 20px; }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.6; }
+    }
+
+    .taehyung-img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      margin: 20px 0;
+      object-fit: cover;
+      border: 4px solid #fff;
+      box-shadow: 0 0 15px #ffadeb;
+      transition: transform 0.5s;
+    }
+
+    .taehyung-img:hover {
+      transform: scale(1.1) rotate(-3deg);
+    }
+
+    .wish-box {
+      margin-top: 30px;
+      padding: 20px;
+      width: 80%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 2px solid #fff;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+      font-size: 1.2em;
+      min-height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.6s ease;
+    }
+
     .next-btn {
-      padding: 14px 28px;
-      background: linear-gradient(45deg, #ec407a, #f06292);
+      margin-top: 40px;
+      padding: 12px 30px;
+      background: #ff90c6;
       color: white;
       border: none;
       border-radius: 30px;
-      font-size: 1.2rem;
+      font-size: 1em;
       cursor: pointer;
-      margin-top: 30px;
-      transition: transform 0.3s ease, background 0.4s ease;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      box-shadow: 0 0 12px #ffb3e6;
+      transition: 0.3s;
     }
+
     .next-btn:hover {
-      background: linear-gradient(45deg, #c2185b, #d81b60);
-      transform: scale(1.05);
-    }
-    .gallery {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .gallery img {
-      width: 120px;
-      height: 120px;
-      object-fit: cover;
-      border-radius: 20px;
-      margin: 10px;
-      transition: transform 0.3s;
-      cursor: pointer;
-      box-shadow: 0 0 15px #f48fb1;
-    }
-    .gallery img:hover {
-      transform: scale(1.1);
-      box-shadow: 0 0 25px #f06292;
-    }
-    .message-box {
-      font-size: 1.3rem;
-      color: #6a1b9a;
-      margin-top: 30px;
-      min-height: 60px;
-      padding: 10px;
-      background: #f3e5f5;
-      border-radius: 12px;
-      animation: fadeIn 0.8s ease-in-out;
-    }
-    .letter {
-      white-space: pre-line;
-      padding: 25px;
-      background: #fff3e0;
-      color: #4e342e;
-      border-left: 5px solid #ff7043;
-      max-width: 700px;
-      animation: typing 5s steps(100, end);
-      overflow: hidden;
-      border-radius: 10px;
-      font-size: 1.1rem;
-    }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-    .final img {
-      width: 220px;
-      border-radius: 20px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 15px #ff80ab;
+      background: #ffaad9;
+      box-shadow: 0 0 20px #ffd6ef;
     }
   </style>
 </head>
-<body><audio id="bg-music" autoplay loop hidden>
-  <source src="Happy Birthday Song___(M4A_128K).m4a" type="audio/mp4">
-</audio><div class="scene active" id="scene1">
-  <h1>🎂 Happy Birthday Hamna 🎂</h1>
-  <h2>You're more precious than stardust 💫</h2>
-  <button class="next-btn" onclick="nextScene()">Next Surprise 🎁</button>
-</div><div class="scene" id="scene2">
-  <h1>⏳ Countdown to August 3</h1>
-  <h2 id="countdown">Loading...</h2>
-  <button class="next-btn" onclick="nextScene()">Next Surprise 🎁</button>
-</div><div class="scene" id="scene3">
-  <h1>BTS Members 🎤</h1>
-  <div class="gallery">
-    <img src="v.jpg" alt="Taehyung" onclick="showMsg('Taehyung: Your smile is the reason the world is beautiful 💜')">
-    <img src="rm.jpg" alt="RM" onclick="showMsg('RM: You are powerful and poetic. Happy Birthday!')">
-    <img src="jungkook.jpg" alt="Jung Kook" onclick="showMsg('Jung Kook: Golden Maknae wishes golden memories 🎈')">
-    <img src="jhope.jpg" alt="J-Hope" onclick="showMsg('J-Hope: Your energy lights up every room 🌞')">
-    <img src="jimin.jpg" alt="Jimin" onclick="showMsg('Jimin: Your heart is pure magic 💫')">
-    <img src="suga.jpg" alt="Suga" onclick="showMsg('Suga: May your dreams sing loud today 🎶')">
-    <img src="jin.jpg" alt="Jin" onclick="showMsg('Jin: Handsome wishes from the Worldwide Handsome 😘')">
+<body>
+  <div class="overlay"></div>
+  <div class="petals"></div>
+
+  <div class="container">
+    <h1>Happy Birthday Hamna 🎀</h1>
+    <img src="v.jpg" alt="Taehyung" class="taehyung-img" />
+
+    <div class="wish-box" id="wishBox">
+      You are the reason someone smiles today 💫
+    </div>
+
+    <button class="next-btn" onclick="nextSurprise()">Next Surprise 💜</button>
   </div>
-  <div class="message-box" id="bts-message"></div>
-  <button class="next-btn" onclick="nextScene()">Taehyung’s Letter 💌</button>
-</div><div class="scene" id="scene4">
-  <h1>💌 From Kim Taehyung</h1>
-  <div class="letter">
-함나야,
-너는 언제나 빛나는 별이야. 생일 축하해!
-널 위해 이 세상에서 제일 아름다운 하루가 되길 바래.
-항상 네 편이야.— 김태형 (V)
 
-Hamna, You are a shining star. Happy Birthday! May your day be the most beautiful in the world. I'm always on your side.
+  <audio autoplay loop>
+    <source src="Happy Birthday Song___(M4A_128K).m4a" type="audio/mp4">
+  </audio>
 
-— Kim Taehyung (V)
+  <script>
+    const wishes = [
+      "You are the reason someone smiles today 💫",
+      "The world is more beautiful because you are in it 🌸",
+      "Your heart is golden, and your soul sparkles 💖",
+      "Taehyung would definitely smile if he saw you today 💜",
+      "You're a masterpiece, just like a BTS song 🎶",
+      "Happy Birthday, Hamna! Keep shining like a diamond 💎",
+      "You deserve magic, love, and the entire galaxy ✨",
+      "From BTS with love — never stop dreaming 🫰"
+    ];
 
-  </div>
-  <button class="next-btn" onclick="nextScene()">Final Surprise 🎆</button>
-</div><div class="scene final" id="scene5">
-  <h1>🎉 Your Final Surprise 🎉</h1>
-  <img src="v.jpg" alt="Taehyung Selfie">
-  <h2>Download Your Keepsake Below</h2>
-  <a href="v.jpg" download><button class="next-btn">Download Poster 💖</button></a>
-</div><script>
-  let current = 1;
-  function nextScene() {
-    document.getElementById(`scene${current}`).classList.remove('active');
-    current++;
-    const next = document.getElementById(`scene${current}`);
-    if(next) next.classList.add('active');
-  }
+    let index = 0;
+    const box = document.getElementById("wishBox");
 
-  function showMsg(msg) {
-    document.getElementById('bts-message').innerText = msg;
-  }
+    setInterval(() => {
+      index = (index + 1) % wishes.length;
+      box.innerText = wishes[index];
+    }, 5000);
 
-  const countdownEl = document.getElementById("countdown");
-  const target = new Date("August 3, 2025 00:00:00").getTime();
-  setInterval(() => {
-    const now = new Date().getTime();
-    const gap = target - now;
-    if(gap < 0) return countdownEl.innerText = "🎉 It's your birthday, Hamna! 🎉";
-    const d = Math.floor(gap / (1000*60*60*24));
-    const h = Math.floor((gap % (1000*60*60*24)) / (1000*60*60));
-    const m = Math.floor((gap % (1000*60*60)) / (1000*60));
-    const s = Math.floor((gap % (1000*60)) / 1000);
-    countdownEl.innerText = `${d}d ${h}h ${m}m ${s}s`;
-  }, 1000);
-</script></body>
+    function nextSurprise() {
+      window.location.href = "taehyung-letter.html"; // link to next page
+    }
+  </script>
+</body>
 </html>
