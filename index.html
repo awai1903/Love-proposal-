@@ -3,78 +3,66 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Happy Birthday Hamna 💜</title>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-
+  <title>Hamna's BTS Surprise</title>
   <style>
-    * {
-      margin: 0; padding: 0;
-      box-sizing: border-box;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html { width: 100%; height: 100%; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+
+    #introVideo, #mainPage {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
     }
 
-    body {
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: 'Poppins', sans-serif;
-      color: white;
-      height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    #introVideo video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    #nextBtn {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.8);
+      padding: 12px 24px;
+      border: none;
+      font-size: 18px;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+
+    #mainPage {
+      display: none;
+      background: url('background.jpg') no-repeat center center/cover;
       text-align: center;
-      overflow: hidden;
-      position: relative;
+      padding-top: 60px;
     }
 
-    .overlay {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
+    #taehyungImg {
+      width: 220px;
+      border-radius: 30px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
     }
 
-    .sparkles {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: url('backgroung.jpg') repeat;
-      opacity: 0.3;
-      pointer-events: none;
-      z-index: 1;
+    #taehyungImg:hover {
+      transform: scale(1.05);
     }
 
-    .content {
-      position: relative;
-      z-index: 2;
-      padding: 20px;
-    }
-
-    h1 {
-      font-size: 3rem;
-      font-family: 'Great Vibes', cursive;
-      color: #ffc6ec;
-      margin-bottom: 10px;
-      text-shadow: 0 0 10px #ff99cc;
-    }
-
-    h2 {
-      font-size: 1.4rem;
-      margin-bottom: 30px;
-      color: #f8d3ec;
-    }
-
-    .tae-img {
-      width: 250px;
+    #wishText {
+      display: none;
+      margin-top: 20px;
+      color: #fff;
+      font-size: 20px;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 15px;
+      border-radius: 15px;
       max-width: 90%;
-      border-radius: 20px;
-      box-shadow: 0 0 20px #ff99cc;
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes glow {
-      0% { box-shadow: 0 0 15px #ff99cc; }
-      100% { box-shadow: 0 0 30px #ff69b4; }
+      margin-left: auto;
+      margin-right: auto;
     }
 
     audio {
@@ -82,30 +70,51 @@
     }
 
     @media (max-width: 768px) {
-      h1 { font-size: 2.4rem; }
-      h2 { font-size: 1.1rem; }
-      .tae-img { width: 200px; }
+      #taehyungImg {
+        width: 180px;
+      }
+
+      #wishText {
+        font-size: 16px;
+      }
     }
   </style>
 </head>
 <body>
 
-  <!-- Background overlay & sparkles -->
-  <div class="overlay"></div>
-  <div class="sparkles"></div>
-
-  <!-- Main content -->
-  <div class="content">
-    <h1>Happy Birthday Hamna 💜</h1>
-    <h2>From your Taehyung... with love 🎀</h2>
-    <img src="v.jpg" class="tae-img" alt="Taehyung">
+  <!-- 🎥 Intro Video -->
+  <div id="introVideo">
+    <video autoplay muted playsinline id="video">
+      <source src="video.mp4" type="video/mp4">
+      Your browser does not support video.
+    </video>
+    <button id="nextBtn">Next Surprise 🎁</button>
   </div>
 
-  <!-- Background birthday music -->
-  <audio autoplay loop>
-    <source src="song.m4a" type="audio/mp4">
-    Your browser does not support the audio element.
-  </audio>
+  <!-- 🎉 Main Surprise Page -->
+  <div id="mainPage">
+    <img src="taehyung.jpg" alt="Taehyung" id="taehyungImg" />
+    <div id="wishText">🎉 Happy Birthday Hamna! 🎂<br>Taehyung wishes you all the love and sparkle in the world 💜</div>
+    <audio id="taehyungSound" src="song.mp3"></audio>
+  </div>
 
+  <script>
+    const nextBtn = document.getElementById("nextBtn");
+    const introVideo = document.getElementById("introVideo");
+    const mainPage = document.getElementById("mainPage");
+    const taeImg = document.getElementById("taehyungImg");
+    const wishText = document.getElementById("wishText");
+    const taeSound = document.getElementById("taehyungSound");
+
+    nextBtn.onclick = () => {
+      introVideo.style.display = "none";
+      mainPage.style.display = "block";
+    };
+
+    taeImg.onclick = () => {
+      wishText.style.display = "block";
+      taeSound.play();
+    };
+  </script>
 </body>
 </html>
