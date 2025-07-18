@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hamna's 21st Birthday 🎉</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom right, #ffc0cb, #ffb6c1);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .countdown-container {
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .countdown-item {
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 10px;
+      box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
+      backdrop-filter: blur(5px);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      animation: blink 1s infinite;
+    }
+
+    .countdown-item span {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
+    }
+
+    .unlock-msg {
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      color: #fff;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 35px rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    @keyframes pulse {
+      0% { background-color: rgba(255,255,255,0.2); }
+      50% { background-color: rgba(255,255,255,0.4); }
+      100% { background-color: rgba(255,255,255,0.2); }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💖 Countdown for Hamna's 21st Birthday 💖</h1>
+
+  <div class="countdown-container" id="countdown">
+    <!-- Countdown items will load here -->
+  </div>
+
+  <div class="unlock-msg">🎁 Surprise Unlocks on 3 August 2025 🎁</div>
+
+  <script>
+    const targetDate = new Date("August 3, 2025 00:00:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const distance = targetDate - now;
+
+      const months = Math.floor(distance / (1000 * 60 * 60 * 24 * 30));
+      const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML = `
+        <div class="countdown-item"><span>${months}</span>Months</div>
+        <div class="countdown-item"><span>${days}</span>Days</div>
+        <div class="countdown-item"><span>${hours}</span>Hours</div>
+        <div class="countdown-item"><span>${minutes}</span>Minutes</div>
+        <div class="countdown-item"><span>${seconds}</span>Seconds</div>
+      `;
+
+      if (distance < 0) {
+        document.getElementById("countdown").innerHTML = "🎉 Happy Birthday Hamna! 🎉";
+        document.querySelector('.unlock-msg').innerText = "🎁 Your Surprise is Unlocked!";
+      }
+    }   
+
+    setInterval(updateCountdown, 1000); 
+  </script>
+</body>
+</html>
