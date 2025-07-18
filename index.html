@@ -31,10 +31,7 @@
       justify-content: center;
     }
 
- <style>
-  /* Your existing styles... */
-
-  .countdown-item {
+     .countdown-item {
     width: 90px;
     height: 90px;
     border-radius: 50%; /* ✅ fully rounded */
@@ -49,15 +46,38 @@
     animation: blink 1s infinite; /* ✅ blinking every second */
   }
 
-  @keyframes blink {
-    0%, 100% {
-      box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
+    .countdown-item span {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: white;
     }
-    50% {
-      box-shadow: 0 0 35px rgba(255, 255, 255, 0.7);
+
+    .unlock-msg {
+      margin-top: 30px;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 10px 20px;
+      border-radius: 20px;
+      font-weight: bold;
+      color: #fff;
+      animation: pulse 2s infinite;
     }
-  }
-</style>
+
+    @keyframes blink {
+      0%, 100% {
+        box-shadow: 0 0 20px rgba(255, 192, 203, 0.5);
+      }
+      50% {
+        box-shadow: 0 0 35px rgba(255, 255, 255, 0.7);
+      }
+    }
+
+    @keyframes pulse {
+      0% { background-color: rgba(255,255,255,0.2); }
+      50% { background-color: rgba(255,255,255,0.4); }
+      100% { background-color: rgba(255,255,255,0.2); }
+    }
+  </style>
 </head>
 <body>
 
