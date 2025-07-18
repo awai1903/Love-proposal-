@@ -92,31 +92,53 @@
   <script>
     const targetDate = new Date("August 3, 2025 00:00:00").getTime();
 
-    function updateCountdown() {
-      const now = new Date().getTime();
-      const distance = targetDate - now;
+function updateCountdown() {
+  const now = new Date().getTime();
+  const distance = targetDate - now;
 
-      const months = Math.floor(distance / (1000 * 60 * 60 * 24 * 30));
-      const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+  const months = Math.floor(distance / (1000 * 60 * 60 * 24 * 30));
+  const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-      document.getElementById("countdown").innerHTML = `
-        <div class="countdown-item"><span>${months}</span>Months</div>
-        <div class="countdown-item"><span>${days}</span>Days</div>
-        <div class="countdown-item"><span>${hours}</span>Hours</div>
-        <div class="countdown-item"><span>${minutes}</span>Minutes</div>
-        <div class="countdown-item"><span>${seconds}</span>Seconds</div>
-      `;
+  if (distance < 0) {
+    document.getElementById("countdown").innerHTML = "🎉 Happy Birthday Hamna! 🎉";
+    const msg = document.querySelector('.unlock-msg');
+    msg.innerText = "🎁 Your Surprise is Unlocked!";
 
-      if (distance < 0) {
-        document.getElementById("countdown").innerHTML = "🎉 Happy Birthday Hamna! 🎉";
-        document.querySelector('.unlock-msg').innerText = "🎁 Your Surprise is Unlocked!";
-      }
-    }   
+    // 🎈 Add surprise button
+    const btn = document.createElement("button");
+    btn.innerText = "✨ Tap to See Your Surprise ✨";
+    btn.style.marginTop = "20px";
+    btn.style.padding = "12px 24px";
+    btn.style.borderRadius = "30px";
+    btn.style.border = "none";
+    btn.style.backgroundColor = "#ff69b4";
+    btn.style.color = "white";
+    btn.style.fontWeight = "bold";
+    btn.style.fontSize = "1rem";
+    btn.style.cursor = "pointer";
+    btn.style.boxShadow = "0 0 20px rgba(255, 192, 203, 0.8)";
+    btn.onclick = () => {
+      window.location.href = "surprise.html"; // 👈 change filename if needed
+    };
+    document.body.appendChild(btn);
 
-    setInterval(updateCountdown, 1000); 
+    clearInterval(timer); // Stop the interval
+    return;
+  }
+
+  document.getElementById("countdown").innerHTML = `
+    <div class="countdown-item"><span>${months}</span>Months</div>
+    <div class="countdown-item"><span>${days}</span>Days</div>
+    <div class="countdown-item"><span>${hours}</span>Hours</div>
+    <div class="countdown-item"><span>${minutes}</span>Minutes</div>
+    <div class="countdown-item"><span>${seconds}</span>Seconds</div>
+  `;
+}
+const timer = setInterval(updateCountdown, 1000);
+
   </script>
 </body>
 </html>
