@@ -2,162 +2,173 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Birthday Surprise</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Hamna's Birthday Surprise 💜</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif;}
+    body {
+      background: url('background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow-x: hidden;
+      color: white;
     }
-
-    body, html {
-      height: 100%;
-      overflow: hidden;
-      font-family: 'Segoe UI', sans-serif;
-    }
-
-    .main-section {
-      background: url('background.jpg') no-repeat center center/cover;
+    .video-section {
       height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
-      flex-direction: column;
-      position: relative;
-      text-align: center;
-    }
-
-    #video-container {
+      align-items: center;
       position: relative;
     }
-
     #playButton {
-      font-size: 50px;
-      color: white;
-      background: rgba(0,0,0,0.6);
-      padding: 20px 30px;
-      border-radius: 100%;
+      background: rgba(255, 255, 255, 0.3);
+      border: 2px solid white;
+      padding: 20px;
+      border-radius: 50%;
+      font-size: 30px;
       cursor: pointer;
-      border: 3px solid white;
-      z-index: 10;
+      z-index: 2;
+      position: absolute;
     }
-
-    video {
-      max-width: 90vw;
-      max-height: 70vh;
+    #birthdayVideo {
       display: none;
-      border-radius: 20px;
+      width: 100%;
+      height: auto;
+      max-height: 100vh;
     }
-
     #nextBtn {
-      margin-top: 20px;
-      padding: 12px 25px;
-      background: #ff7eb9;
-      color: white;
-      font-size: 18px;
+      display: none;
+      position: absolute;
+      bottom: 40px;
+      padding: 15px 30px;
+      background: #ff5aa0;
       border: none;
-      border-radius: 25px;
+      font-size: 18px;
+      border-radius: 30px;
+      color: white;
       cursor: pointer;
-      display: none;
+      z-index: 3;
     }
-
-    .second-section {
+    .taehyung-section {
       display: none;
-      height: 100vh;
-      background: url('background.jpg') no-repeat center center/cover;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
       text-align: center;
-      padding-top: 50px;
-      overflow-y: auto;
     }
-
-    .second-section img {
+    .taehyung-section img {
       width: 200px;
-      border-radius: 20px;
-      transition: transform 0.3s ease;
+      height: 200px;
+      border-radius: 50%;
+      box-shadow: 0 0 30px #fff;
+      cursor: pointer;
+      transition: all 0.6s ease;
     }
-
-    .second-section img:hover {
-      transform: scale(1.05);
+    .taehyung-section img.clicked {
+      width: 120px;
+      height: 120px;
+      margin-bottom: 20px;
+      transform: translateY(-100px);
     }
-
-    #wishes {
+    .finger {
+      font-size: 18px;
+      animation: bounce 1s infinite;
+      margin-top: 10px;
+    }
+    @keyframes bounce {
+      0%, 100% {transform: translateY(0);}
+      50% {transform: translateY(-5px);}
+    }
+    .wishes-container {
       margin-top: 20px;
-      max-height: 70vh;
-      overflow-y: auto;
-      display: none;
-      padding: 10px;
-      background: rgba(255, 255, 255, 0.7);
-      border-radius: 15px;
+      max-width: 90%;
+      text-align: left;
+      font-family: 'Caveat', cursive;
+      font-size: 22px;
     }
-
-    #wishes p {
-      margin: 10px 0;
-      font-weight: 500;
-      color: #333;
+    .wish {
+      opacity: 0;
+      transition: opacity 0.5s ease-in;
+      margin-bottom: 10px;
+    }
+    .wish.show {
+      opacity: 1;
+    }
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
 
-  <audio id="bgMusic" src="song.m4a" loop></audio>
+  <!-- 🔈 Background Music -->
+  <audio id="bgMusic" src="song.mp3" loop></audio>
 
-  <!-- First Section -->
-  <div class="main-section">
-    <div id="video-container">
-      <div id="playButton">▶</div>
-      <video id="bdayVideo" src="video.mp4" controls></video>
-    </div>
-    <button id="nextBtn">Next Surprise 🎉</button>
+  <!-- 🎥 Video Section -->
+  <div class="video-section" id="videoSection">
+    <div id="playButton">▶️</div>
+    <video id="birthdayVideo" src="video.mp4" controls></video>
+    <button id="nextBtn">Next Surprise 🎁</button>
   </div>
 
-  <!-- Second Section -->
-  <div class="second-section" id="secondSection">
-    <img src="v.jpg" alt="Taehyung" id="taeImage">
-    <div id="wishes">
-      <!-- Wishes will be added by JS -->
-    </div>
+  <!-- 🖼️ Taehyung Section -->
+  <div class="taehyung-section" id="taeSection">
+    <img src="v.jpg" alt="Taehyung" id="vPhoto">
+    <div class="finger">👆 Click the picture</div>
+    <div class="wishes-container" id="wishesContainer"></div>
   </div>
 
   <script>
-    const playBtn = document.getElementById('playButton');
-    const video = document.getElementById('bdayVideo');
-    const nextBtn = document.getElementById('nextBtn');
-    const bgMusic = document.getElementById('bgMusic');
-    const secondSection = document.getElementById('secondSection');
-    const wishesDiv = document.getElementById('wishes');
-    const taeImage = document.getElementById('taeImage');
+    const playBtn = document.getElementById("playButton");
+    const video = document.getElementById("birthdayVideo");
+    const nextBtn = document.getElementById("nextBtn");
+    const bgMusic = document.getElementById("bgMusic");
+    const taeSection = document.getElementById("taeSection");
+    const vPhoto = document.getElementById("vPhoto");
+    const wishesContainer = document.getElementById("wishesContainer");
 
-    playBtn.addEventListener('click', () => {
-      playBtn.style.display = 'none';
-      video.style.display = 'block';
+    const wishes = [
+      "Happy birthday, beautiful soul! 💜",
+      "Taehyung sends you purple hearts all day! 💜",
+      "Your smile lights up the world!",
+      "Hope this year is magical for you!",
+      "Wishing you a day as stunning as you are!",
+      "You deserve all the love today and always.",
+      "May BTS always be your comfort and joy!",
+      "You are golden, just like Jungkook says! ✨",
+      "Today, Kim Taehyung is only thinking of you!",
+      "You're the reason the stars shine brighter tonight!",
+      // Add 40 more sweet lines here...
+    ];
+
+    playBtn.addEventListener("click", () => {
+      playBtn.style.display = "none";
+      video.style.display = "block";
       video.play();
-      nextBtn.style.display = 'inline-block';
+      bgMusic.pause();
+      nextBtn.style.display = "block";
     });
 
-    nextBtn.addEventListener('click', () => {
-      document.querySelector('.main-section').style.display = 'none';
-      secondSection.style.display = 'block';
+    nextBtn.addEventListener("click", () => {
+      document.getElementById("videoSection").style.display = "none";
+      taeSection.style.display = "flex";
       bgMusic.play();
     });
 
-    taeImage.addEventListener('click', () => {
-      if (wishesDiv.style.display === 'none') {
-        wishesDiv.style.display = 'block';
-        generateWishes();
-      } else {
-        wishesDiv.style.display = 'none';
-        wishesDiv.innerHTML = '';
-      }
-    });
+    vPhoto.addEventListener("click", () => {
+      vPhoto.classList.add("clicked");
+      document.querySelector(".finger").style.display = "none";
 
-    function generateWishes() {
-      for (let i = 1; i <= 100; i++) {
-        const wish = document.createElement('p');
-        wish.innerText = `🎉 Happy Birthday Hamna! May your ${i}th wish come true today! 💜`;
-        wishesDiv.appendChild(wish);
-      }
-    }
+      wishes.forEach((line, i) => {
+        const div = document.createElement("div");
+        div.className = "wish";
+        div.innerText = line;
+        wishesContainer.appendChild(div);
+
+        setTimeout(() => {
+          div.classList.add("show");
+        }, i * 400); // Delay between wishes
+      });
+    });
   </script>
 </body>
 </html>
