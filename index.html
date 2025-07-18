@@ -114,6 +114,11 @@
     <div class="second-section" id="secondSection">
     <img src="v.jpg" alt="Taehyung" id="taeImage">
     <div id="wishes">
+
+      <p style="color: #333; margin-top: 10px; font-size: 18px;">
+  👆 Double tap this picture!
+</p>
+
   <script>
     const playBtn = document.getElementById('playButton');
     const video = document.getElementById('bdayVideo');
@@ -123,12 +128,19 @@
     const wishesDiv = document.getElementById('wishes');
     const taeImage = document.getElementById('taeImage');
 
-    playBtn.addEventListener('click', () => {
-      playBtn.style.display = 'none';
-      video.style.display = 'block';
-      video.play();
-      nextBtn.style.display = 'inline-block';
-    });
+nextBtn.addEventListener('click', () => {
+  document.querySelector('.main-section').style.display = 'none';
+  secondSection.style.display = 'block';
+  bgMusic.play(); // Background music starts now
+});
+
+
+video.addEventListener('timeupdate', () => {
+  if (video.currentTime >= 20) {
+    nextBtn.style.display = 'inline-block';
+  }
+});
+
 
     nextBtn.addEventListener('click', () => {
       document.querySelector('.main-section').style.display = 'none';
