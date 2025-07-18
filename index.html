@@ -151,34 +151,126 @@
       }
     });
 
-        function generateWishes() {
-      const wishMessages = [
-        "🎉 Happy Birthday Hamna! May your heart always smile! 💜",
-        "🌸 You light up every room. Stay magical, Hamna! ✨",
-        "🎂 May today overflow with love and laughter 💖",
-        "💜 You’re not just a dreamer — you’re the whole dream, Hamna!",
-        "🌟 Wishing you a day as lovely as your soul 💐",
-        "🎶 Just like a BTS melody, you’re unforgettable 💜",
-        "💌 May this year bring you closer to every wish you whisper 🌠",
-        "🎈 A special soul deserves the most special day 💝",
-        "🥳 Shine bright like Taehyung's smile! 🌟",
-        "👑 You're a queen, and today is your royal celebration! 🎉",
-        // 90 more...
-      ];
+      function generateWishes() {
+  const wishes = [
+    "🎉 Happy Birthday Hamna! 💜 May your heart always smile.",
+    "🎂 Wishing you joy today and sparkle every day!",
+    "💌 May Taehyung oppa send you a virtual hug today!",
+    "🌸 May your dreams bloom like cherry blossoms.",
+    "🎁 Here's to a magical year ahead, princess!",
+    "✨ You deserve BTS-level love and attention today.",
+    "💜 Purple hearts are raining just for you today.",
+    "🎊 May every candle on your cake light up a wish!",
+    "🎶 May your life be filled with music and magic.",
+    "💫 Shine like a star, just like Taehyung does!",
+    "🕯️ A wish for you: peace, love, and BTS tickets!",
+    "🍰 Eat cake, dance, and be extra today!",
+    "💖 May today be even more beautiful than a K-Drama ending.",
+    "🦋 You're as rare and lovely as a butterfly in spring.",
+    "📸 Smile today like you're posing for a BTS photocard!",
+    "🎈 Float through the day like a happy pink balloon!",
+    "👑 May your crown never fall, birthday queen!",
+    "💝 May kindness find you everywhere you go.",
+    "🌈 You're a rainbow in someone’s storm, Hamna.",
+    "🌟 Sending you 100 stars to light your path today.",
+    "🥰 May every step you take feel blessed today.",
+    "🧁 You're as sweet as a strawberry cupcake!",
+    "🫰 May love surround you like ARMY surrounds BTS.",
+    "🌙 May you sleep tonight with a smile and dreams of Seoul.",
+    "🎤 May every BTS lyric bring you comfort and power.",
+    "💎 You're rare like a diamond, never forget that!",
+    "🌺 Wishing you a garden full of happiness today.",
+    "🌞 May sunshine follow you wherever you go.",
+    "📖 Your life is a fairytale, and today is a golden page.",
+    "💃 Dance like no one's watching—unless it's BTS 😜",
+    "🌌 May the universe whisper, 'You are loved.'",
+    "🎇 Fireworks in the sky can’t match your sparkle!",
+    "🎵 Let every song today sing your name!",
+    "🕊️ May your soul feel light and free, beautiful girl.",
+    "🐣 You’re cuter than BT21 characters today!",
+    "🍭 May joy stick to you like sugar on candy!",
+    "🌻 Bloom like a sunflower chasing BTS sunshine!",
+    "💘 You're the main character today. Enjoy it!",
+    "🎶 Even Taehyung would stop to say, 'Wow'.",
+    "👼 May angels take selfies with you today!",
+    "🍬 May your moments today taste like cotton candy.",
+    "📦 You’re a gift to this world, Hamna 💝",
+    "🎠 May this year be your happiest ride yet!",
+    "🌠 Tonight, wish upon a star. It’s listening.",
+    "🧸 Sending you virtual cuddles and BTS vibes!",
+    "🏰 May you live a K-pop fairy tale every day.",
+    "🧿 Evil eyes off. Only love today and always.",
+    "🪄 Bibbidi-bobbidi-boo—your birthday dreams come true!",
+    "🥂 To laughter, to love, to BTS and YOU!",
+    "🐰 Jungkook said, 'She’s adorable!'—he meant you.",
+    "💬 The universe whispered your name today, twice!",
+    "🧚 May this year feel magical from start to end.",
+    "🎯 You were born to shine—own it, birthday girl!",
+    "🏹 Cupid’s shooting heart-arrows your way today!",
+    "🌷 May your days feel as soft as flower petals.",
+    "👒 Slay today like it’s a runway!",
+    "🌪️ May no stress dare come near you today.",
+    "🪷 May inner peace bloom like lotus petals in you.",
+    "🍓 You’re juicy joy wrapped in a human being!",
+    "🫶 BTS hearts beat for you today. 💜",
+    "🦄 You're proof that magic is real.",
+    "📀 May all your sad songs turn to healing ones.",
+    "🕯️ May the candlelight reflect how loved you are.",
+    "💫 Here's to a year of being loved like royalty.",
+    "📦 If happiness was a gift, today you'd get a truckload!",
+    "🥳 Celebrate YOU—because you’re one of a kind!",
+    "🍀 May good luck stick to your soul forever!",
+    "🐇 You’re cuter than bunny Jungkook!",
+    "💋 Even Taehyung would blush seeing you today!",
+    "🍮 Soft like flan, sweet like Hamna 💜",
+    "🎇 May your heart burst with joy today.",
+    "🥀 Sadness is cancelled today, queen.",
+    "🥺 Aww Hamna, you deserve a BTS surprise party!",
+    "🧁 May your heart be full of warm sprinkles.",
+    "🫂 Hug yourself today, you beautiful human.",
+    "🕊️ You are peace in a noisy world.",
+    "🌈 You color lives just by existing.",
+    "🌎 The world is better ‘cause you’re in it.",
+    "🎐 May today feel like a slow, sweet K-Drama.",
+    "📓 Write new dreams today—they’ll come true.",
+    "🎭 May life surprise you like a plot twist in a K-Drama.",
+    "💌 You're the love letter this day was waiting for.",
+    "🧁 May every hour today whisper: ‘You are loved.’",
+    "🎡 Life is a ride—enjoy today’s spin!",
+    "🫧 Float in happiness like a bubble today.",
+    "🎊 100 hugs, 100 wishes, 100 sparkles—for YOU!",
+    "💃 May your feet dance even when music stops.",
+    "🎀 You are the ribbon that ties hearts together.",
+    "🍫 You're sweeter than BTS Valentine chocolates!",
+    "🌸 Spring lives inside your smile.",
+    "🪷 May you bloom beautifully this year.",
+    "📣 Today, the world chants: Happy Birthday Hamna!",
+    "💿 May every BTS song hit different for you today.",
+    "🧸 May love wrap you like a fluffy blanket.",
+    "🎶 The melody of today is written for you.",
+    "🎈 Let your heart fly free today.",
+    "🌌 You shine brighter than galaxies.",
+    "💞 You’re someone’s favorite notification today.",
+    "🫰 This is your Taehyung-approved glow up day!",
+    "📷 May every selfie today become a core memory.",
+    "🥰 Smile until your cheeks hurt—because why not?",
+    "🌠 Wishing you magical BTS dreams tonight!",
+    "🎂 May your cake be big, sweet, and purple-frosted!",
+    "🪩 You are the party today, Hamna 🎉",
+    "🌟 May your birthday glow last all year.",
+    "👁️‍🗨️ The universe is *definitely* crushing on you.",
+    "🎈 May today float by with peace and sparkles.",
+    "🫀 Happy Birthday Hamna—ARMY loves you!"
+  ];
 
-      // Add more to reach 100
-      for (let i = 11; i <= 100; i++) {
-        wishMessages.push(`🎉 Wish ${i}: May your journey be filled with beauty and blessings, Hamna! 💜`);
-      }
+  const wishesDiv = document.getElementById('wishes');
+  wishes.forEach((wishText) => {
+    const p = document.createElement('p');
+    p.innerText = wishText;
+    wishesDiv.appendChild(p);
+  });
+}
 
-      wishesDiv.innerHTML = '';
-      wishMessages.forEach(msg => {
-        const wish = document.createElement('p');
-        wish.innerText = msg;
-        wish.style.color = "#6a0dad";
-        wishesDiv.appendChild(wish);
-      });
-    }
 
   </script>
 </body>
