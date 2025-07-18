@@ -1,173 +1,147 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Birthday Surprise</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Taehyung's Birthday Wishes</title>
   <style>
-    * {margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif;}
     body {
-      background: url('background.jpg') no-repeat center center fixed;
-      background-size: cover;
+      background-color: white;
+      font-family: 'Segoe UI', sans-serif;
+      color: #444;
+      margin: 0;
+      padding: 0;
       overflow-x: hidden;
-      color: white;
     }
-    .video-section {
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-    }
-    #playButton {
-      background: rgba(255, 255, 255, 0.3);
-      border: 2px solid white;
-      padding: 20px;
-      border-radius: 50%;
-      font-size: 30px;
-      cursor: pointer;
-      z-index: 2;
-      position: absolute;
-    }
-    #birthdayVideo {
-      display: none;
-      width: 100%;
-      height: auto;
-      max-height: 100vh;
-    }
-    #nextBtn {
-      display: none;
-      position: absolute;
-      bottom: 40px;
-      padding: 15px 30px;
-      background: #ff5aa0;
-      border: none;
-      font-size: 18px;
-      border-radius: 30px;
-      color: white;
-      cursor: pointer;
-      z-index: 3;
-    }
-    .taehyung-section {
-      display: none;
-      flex-direction: column;
-      align-items: center;
+
+    .container {
+      max-width: 600px;
+      margin: 20px auto;
       padding: 20px;
       text-align: center;
     }
-    .taehyung-section img {
-      width: 200px;
-      height: 200px;
+
+    .tae-image {
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
-      box-shadow: 0 0 30px #fff;
+      object-fit: cover;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      transition: transform 0.4s ease;
       cursor: pointer;
-      transition: all 0.6s ease;
     }
-    .taehyung-section img.clicked {
-      width: 120px;
-      height: 120px;
-      margin-bottom: 20px;
-      transform: translateY(-100px);
+
+    .tae-image.clicked {
+      transform: scale(1.2) translateY(-20px);
     }
-    .finger {
-      font-size: 18px;
-      animation: bounce 1s infinite;
+
+    .pointer {
       margin-top: 10px;
+      font-size: 16px;
+      color: #888;
+      animation: bounce 1s infinite;
     }
+
     @keyframes bounce {
-      0%, 100% {transform: translateY(0);}
-      50% {transform: translateY(-5px);}
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
     }
-    .wishes-container {
-      margin-top: 20px;
-      max-width: 90%;
+
+    .wishes {
+      margin-top: 30px;
       text-align: left;
-      font-family: 'Caveat', cursive;
-      font-size: 22px;
-    }
-    .wish {
-      opacity: 0;
-      transition: opacity 0.5s ease-in;
-      margin-bottom: 10px;
-    }
-    .wish.show {
-      opacity: 1;
-    }
-    audio {
       display: none;
+    }
+
+    .wish {
+      background-color: #f9f9f9;
+      border-left: 4px solid #ff80ab;
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      border-radius: 6px;
+      font-size: 16px;
+      color: #333;
+      line-height: 1.5;
+      transition: all 0.3s ease;
+    }
+
+    .wish:hover {
+      background-color: #ffeef4;
     }
   </style>
 </head>
 <body>
+  <div class="container">
+    <img src="v.jpg" alt="Taehyung" class="tae-image" id="taeImage" />
+    <div class="pointer">👇 Click the picture 👇</div>
 
-  <!-- 🔈 Background Music -->
-  <audio id="bgMusic" src="song.mp3" loop></audio>
-
-  <!-- 🎥 Video Section -->
-  <div class="video-section" id="videoSection">
-    <div id="playButton">▶️</div>
-    <video id="birthdayVideo" src="video.mp4" controls></video>
-    <button id="nextBtn">Next Surprise 🎁</button>
-  </div>
-
-  <!-- 🖼️ Taehyung Section -->
-  <div class="taehyung-section" id="taeSection">
-    <img src="v.jpg" alt="Taehyung" id="vPhoto">
-    <div class="finger">👆 Click the picture</div>
-    <div class="wishes-container" id="wishesContainer"></div>
+    <div class="wishes" id="wishesList">
+      <!-- Wishes will appear here -->
+    </div>
   </div>
 
   <script>
-    const playBtn = document.getElementById("playButton");
-    const video = document.getElementById("birthdayVideo");
-    const nextBtn = document.getElementById("nextBtn");
-    const bgMusic = document.getElementById("bgMusic");
-    const taeSection = document.getElementById("taeSection");
-    const vPhoto = document.getElementById("vPhoto");
-    const wishesContainer = document.getElementById("wishesContainer");
-
     const wishes = [
-      "Happy birthday, beautiful soul! 💜",
-      "Taehyung sends you purple hearts all day! 💜",
-      "Your smile lights up the world!",
-      "Hope this year is magical for you!",
-      "Wishing you a day as stunning as you are!",
-      "You deserve all the love today and always.",
-      "May BTS always be your comfort and joy!",
-      "You are golden, just like Jungkook says! ✨",
-      "Today, Kim Taehyung is only thinking of you!",
-      "You're the reason the stars shine brighter tonight!",
-      // Add 40 more sweet lines here...
+      "Happy Birthday, Hamna! You're as precious as my favorite melody.",
+      "Smile big today — the world needs more of your magic.",
+      "You're not just a year older, you're a year more iconic 💜.",
+      "I hope this birthday brings you dreams that even ARMY can’t imagine.",
+      "You sparkle brighter than the lights at a BTS concert.",
+      "Hamna, I purple you. Forever and always.",
+      "May your heart be as warm as my winter bear hugs 🐻.",
+      "You're the kind of person who makes the stars jealous.",
+      "Your presence is like my guitar — makes every moment poetic.",
+      "You're not just a fan, you're a piece of our universe.",
+      "Celebrate today like it's your solo stage!",
+      "If birthdays were songs, yours would top every chart 🎶.",
+      "Keep shining, Hamna. The moon needs competition.",
+      "From Seoul to your soul — Happy Birthday!",
+      "You're one in a taebillion 💫.",
+      "Let your dreams bloom like cherry blossoms.",
+      "Hamna, you make the world softer just by being in it.",
+      "You’ve got more charm than my entire photoshoot folder.",
+      "Wishing you peace, purple skies, and pancakes.",
+      "I hope you dance like no one’s watching — unless it’s me 😉.",
+      "Your smile? Grammy-worthy.",
+      "Birthdays are just reminders of how loved you truly are.",
+      "Keep walking your path. I’m cheering for you.",
+      "Today’s your encore. Take a bow 🌟.",
+      "Let this day be more magical than any K-drama ending.",
+      "Hamna, you're not aging — you're leveling up.",
+      "You're the real reason the universe made glitter.",
+      "Celebrate like you just met your bias backstage.",
+      "Every year, you're more breathtaking than the last.",
+      "If love was a melody, you'd be the chorus.",
+      "Keep being you — the world needs your light.",
+      "Even the stars are jealous of your shine today.",
+      "From ARMY to angel — you’re everything soft and sweet.",
+      "My voice reaches you today, Hamna — Happy Birthday.",
+      "You deserve the kind of joy we feel performing on stage.",
+      "Sing loud. Laugh hard. Love deep. It's your day.",
+      "You’re the kind of person that makes birthdays feel special.",
+      "Let your heart beat to the rhythm of your dreams.",
+      "If I could teleport, I’d bring you cake myself 🎂.",
+      "Today, the skies are purple just for you.",
+      "Don't ever stop being the masterpiece you are.",
+      "Wishing you endless confetti and comfort.",
+      "Your journey has only just begun, superstar.",
+      "You're a flower blooming in my favorite spring.",
+      "From me, Taehyung, with all my warmth — Happy Birthday.",
+      "You inspire with every smile. Keep glowing.",
+      "Birthday hugs? Sending them across galaxies.",
+      "Turn the volume up — it’s your day to shine!",
+      "Hamna, you're a vibe the universe can’t ignore.",
+      "You’ve made it this far — now fly even higher.",
+      "With every heartbeat, know that you're cherished 💜."
     ];
 
-    playBtn.addEventListener("click", () => {
-      playBtn.style.display = "none";
-      video.style.display = "block";
-      video.play();
-      bgMusic.pause();
-      nextBtn.style.display = "block";
-    });
+    const image = document.getElementById('taeImage');
+    const wishesList = document.getElementById('wishesList');
 
-    nextBtn.addEventListener("click", () => {
-      document.getElementById("videoSection").style.display = "none";
-      taeSection.style.display = "flex";
-      bgMusic.play();
-    });
-
-    vPhoto.addEventListener("click", () => {
-      vPhoto.classList.add("clicked");
-      document.querySelector(".finger").style.display = "none";
-
-      wishes.forEach((line, i) => {
-        const div = document.createElement("div");
-        div.className = "wish";
-        div.innerText = line;
-        wishesContainer.appendChild(div);
-
-        setTimeout(() => {
-          div.classList.add("show");
-        }, i * 400); // Delay between wishes
-      });
+    image.addEventListener('click', () => {
+      image.classList.add('clicked');
+      wishesList.style.display = 'block';
+      wishesList.innerHTML = wishes.map(wish => `<div class="wish">${wish}</div>`).join('');
     });
   </script>
 </body>
